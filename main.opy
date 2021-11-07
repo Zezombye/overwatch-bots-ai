@@ -3,161 +3,151 @@
 
 #Global variables
 
-globalvar StartBots 0
-globalvar HackedHealthpack 2
-globalvar TargetArray 3
-globalvar AutomaticFireList 4
-globalvar HealthpackLocations 5
-globalvar HealthpackBlacklist 6
-globalvar DummyBots 7
-globalvar JumpPointsGlobal 8
-globalvar Waypoints 9
-globalvar GlobalTeamComp 10
-globalvar weirdVect1 13
-globalvar weirdVect2 14
-globalvar ServerLoadIsHigh 18
-globalvar AllowedHeroesT1 19
-globalvar AllowedHeroesT2 20
-globalvar Difficulty 21
-globalvar BotsTeam1 22
-globalvar BotsTeam2 23
-globalvar ReplacerBots 24
-globalvar AFK_protection 25
-globalvar AFK_timer 26
-globalvar BotSlot0team1 27
-globalvar BotSlot0team2 28
-globalvar BotSlot1team1 29
-globalvar BotSlot1team2 30
-globalvar BotSlot2team1 31
-globalvar BotSlot2team2 32
-globalvar BotSlot3team1 33
-globalvar BotSlot3team2 34
-globalvar BotSlot4team1 35
-globalvar BotSlot4team2 36
-globalvar BotSlot5team1 37
-globalvar BotSlot5team2 38
-globalvar Teams 40
+globalvar StartBots
+globalvar HackedHealthpack
+globalvar TargetArray
+globalvar AutomaticFireList
+globalvar HealthpackLocations
+globalvar HealthpackBlacklist
+globalvar DummyBots
+globalvar JumpPointsGlobal
+globalvar Waypoints
+globalvar GlobalTeamComp
+globalvar weirdVect1
+globalvar weirdVect2
+globalvar ServerLoadIsHigh
+globalvar AllowedHeroesT1
+globalvar AllowedHeroesT2
+globalvar Difficulty
+globalvar BotsTeam1
+globalvar BotsTeam2
+globalvar ReplacerBots
+globalvar AFK_protection
+globalvar AFK_timer
+globalvar team1BotHeroes
+globalvar team2BotHeroes
+globalvar Teams
 globalvar I 41
-globalvar AllHeros 43
 
 
 #Player variables
 
-playervar CanSeeEnemy 0
-playervar CanSeeAlly 1
-playervar CanSeeDamagedAlly 2
-playervar TouchedTheObjective 3
-playervar DealtDamage 4
-playervar TookDamage 5
-playervar FocusDamagedAlly 6
-playervar HasCC 7
-playervar GotElimination 8
-playervar StopFacing 9
-playervar ChaseEnemy 10
-playervar HeroPriorityRating 12
-playervar BastionTurretMode 14
-playervar CurrentWaypoint 15
-playervar StopAutomaticGoTo 16
-playervar BrigitteBotRepairPackAmmo 17
-playervar CurrentTarget 18
-playervar StopShoot 22
-playervar MoiraOrbReady 23
-playervar CurrentHealthpack 24
-playervar Stealth 25
-playervar VisibleEnemies 26
-playervar CurrentHealTarget 27
-playervar ClosestHealthpackPosition 28
-playervar TeleportLocation 29
-playervar BotActive 30
-playervar CanHeal 31
-playervar CurrentVisibleWaypoints 32
-playervar WaypointBlacklist 33
-playervar CurrentGoToTarget 34
-playervar JumpPoint 35
-playervar RandomFacingDirection 36
-playervar Communicate 37
-playervar PickedUpHealthpack 38
-playervar VisibleTurretSpots 39
-playervar LucioAuraMode 42
-playervar RandomizedWaypointArray 43
-playervar IndexNumber 44
-playervar TurnRate 45
-playervar ZaryaUlt 46
-playervar PlayerClosestToObjectiveCenter 48
-playervar HackTargets 49
-playervar Module_001_DummyBotEnemy 50
-playervar Module_002_DummyBot 51
-playervar Bot_Waiting_Time 52
-playervar Module_003_LowRange5m 53
-playervar Module_004_MidRange10m 54
-playervar Module_005_LongRange15m 55
-playervar Module_006_HighRange20m 56
-playervar Module_007_DummyBot_SeeDamagedA 57
-playervar Module_008_VeryLowHealth30 58
-playervar Module_009_HalfHealth50 59
-playervar Module_010_HighHealth75 60
-playervar Module_011_OverHealth75 61
-playervar CanSeeDeadAlly 62
-playervar CurrentAllyTarget 63
-playervar Module_012_DummyBotAlly 64
-playervar CurrentDeadAlly 65
-playervar Mercy_Rez 66
-playervar BlacklistedWaypoint 67
+playervar CanSeeEnemy
+playervar CanSeeAlly
+playervar CanSeeDamagedAlly
+playervar TouchedTheObjective
+playervar DealtDamage
+playervar TookDamage
+playervar FocusDamagedAlly
+playervar HasCC
+playervar GotElimination
+playervar StopFacing
+playervar ChaseEnemy
+playervar HeroPriorityRating
+playervar BastionTurretMode
+playervar CurrentWaypoint
+playervar StopAutomaticGoTo
+playervar BrigitteBotRepairPackAmmo
+playervar CurrentTarget
+playervar StopShoot
+playervar MoiraOrbReady
+playervar CurrentHealthpack
+playervar Stealth
+playervar VisibleEnemies
+playervar CurrentHealTarget
+playervar ClosestHealthpackPosition
+playervar TeleportLocation
+playervar BotActive
+playervar CanHeal
+playervar CurrentVisibleWaypoints
+playervar WaypointBlacklist
+playervar CurrentGoToTarget
+playervar JumpPoint
+playervar RandomFacingDirection
+playervar Communicate
+playervar PickedUpHealthpack
+playervar VisibleTurretSpots
+playervar LucioAuraMode
+playervar RandomizedWaypointArray
+playervar IndexNumber
+playervar TurnRate
+playervar ZaryaUlt
+playervar PlayerClosestToObjectiveCenter
+playervar HackTargets
+playervar Module_001_DummyBotEnemy
+playervar Module_002_DummyBot
+playervar Bot_Waiting_Time
+playervar Module_003_LowRange5m
+playervar Module_004_MidRange10m
+playervar Module_005_LongRange15m
+playervar Module_006_HighRange20m
+playervar Module_007_DummyBot_SeeDamagedA
+playervar Module_008_VeryLowHealth30
+playervar Module_009_HalfHealth50
+playervar Module_010_HighHealth75
+playervar Module_011_OverHealth75
+playervar CanSeeDeadAlly
+playervar CurrentAllyTarget
+playervar Module_012_DummyBotAlly
+playervar CurrentDeadAlly
+playervar Mercy_Rez
+playervar BlacklistedWaypoint
 
 
 #Subroutine names
 
-subroutine Action_Module_001_UseAbility1 0
-subroutine Action_Module_002_UseAbility2 1
-subroutine Action_Module_003_UseUltimate 2
-subroutine Action_Module_004_UsePrimary_B 3
-subroutine Action_Module_005_UseSecondary_B 4
-subroutine Action_Module_006_UsePrimary_A 5
-subroutine Action_Module_007_UseSecondary_A 6
-subroutine Action_Module_008_UseSecondary_S 7
-subroutine Action_Module_009_Distance_Info 8
-subroutine Action_Module_010_Selfuse_Start 9
-subroutine Action_Module_010_Selfuse_End 10
-subroutine Action_Module_011_StopAction 11
-subroutine Action_Module_011_StartAction 12
-subroutine Action_Module_012_Health 13
-subroutine Action_Module_013_Ability1_S 14
-subroutine Action_Module_014_Ability2_S 15
-subroutine Action_Module_015_Ultimate_S 16
-subroutine Action_Module_016_Chase_Ult 17
-subroutine Action_Module_017_Sec_S 18
-subroutine Action_Module_018_Hold_POS 19
+subroutine Action_Module_001_UseAbility1
+subroutine Action_Module_002_UseAbility2
+subroutine Action_Module_003_UseUltimate
+subroutine Action_Module_004_UsePrimary_B
+subroutine Action_Module_005_UseSecondary_B
+subroutine Action_Module_006_UsePrimary_A
+subroutine Action_Module_007_UseSecondary_A
+subroutine Action_Module_008_UseSecondary_S
+subroutine Action_Module_009_Distance_Info
+subroutine Action_Module_010_Selfuse_Start
+subroutine Action_Module_010_Selfuse_End
+subroutine Action_Module_011_StopAction
+subroutine Action_Module_011_StartAction
+subroutine Action_Module_012_Health
+subroutine Action_Module_013_Ability1_S
+subroutine Action_Module_014_Ability2_S
+subroutine Action_Module_015_Ultimate_S
+subroutine Action_Module_016_Chase_Ult
+subroutine Action_Module_017_Sec_S
+subroutine Action_Module_018_Hold_POS
 
 
 rule "Initialize settings":
-    Difficulty = createWorkshopSetting(int[1:5], "AI Difficulty", "AI Difficulty", 3, 0)
+    Difficulty = createWorkshopSetting(int[1:5], "AI Settings", "AI Difficulty", 3, 0)
 
     #Bot number
-    Teams = createWorkshopSetting(int[0:2], "AI TEAM", "0 = Default Teams - 1 = Random Teams + Custom Bot Number - 2 = Custom Heroes", 0, 0)
-    BotsTeam1 = createWorkshopSetting(int[0:12], "AI Number", "Number of Bots Team 1", 6, 0)
-    BotsTeam2 = createWorkshopSetting(int[0:12], "AI Number", "Number of Bots Team 2", 6, 0)
-
+    BotsTeam1 = createWorkshopSetting(int[0:12], "AI Settings", "Number of Bots in Team 1", 6, 0)
+    BotsTeam2 = createWorkshopSetting(int[0:12], "AI Settings", "Number of Bots in Team 2", 6, 0)
+    
     #General
     ReplacerBots = createWorkshopSetting(bool, "AI Settings", "Replace left player with Bots", false, 0)
     AFK_protection = createWorkshopSetting(bool, "AI Settings", "AI Controls AFK Player", false, 0)
     AFK_timer = createWorkshopSetting(float[10:60], "AI Settings", "AFK Time needed to start Bot", 30, 0)
 
-    #Custom heroes
-    BotSlot0team1 = createWorkshopSetting(int[0:33], "AI Custom Hero", "Bot Hero Slot 0 Team 1", 0, 0)
-    BotSlot1team1 = createWorkshopSetting(int[0:33], "AI Custom Hero", "Bot Hero Slot 1 Team 1", 0, 0)
-    BotSlot2team1 = createWorkshopSetting(int[0:33], "AI Custom Hero", "Bot Hero Slot 2 Team 1", 0, 0)
-    BotSlot3team1 = createWorkshopSetting(int[0:33], "AI Custom Hero", "Bot Hero Slot 3 Team 1", 0, 0)
-    BotSlot4team1 = createWorkshopSetting(int[0:33], "AI Custom Hero", "Bot Hero Slot 4 Team 1", 0, 0)
-    BotSlot5team1 = createWorkshopSetting(int[0:33], "AI Custom Hero", "Bot Hero Slot 5 Team 1", 0, 0)
-    BotSlot0team2 = createWorkshopSetting(int[0:33], "AI Custom Hero", "Bot Hero Slot 0 Team 2", 0, 0)
-    BotSlot1team2 = createWorkshopSetting(int[0:33], "AI Custom Hero", "Bot Hero Slot 1 Team 2", 0, 0)
-    BotSlot2team2 = createWorkshopSetting(int[0:33], "AI Custom Hero", "Bot Hero Slot 2 Team 2", 0, 0)
-    BotSlot3team2 = createWorkshopSetting(int[0:33], "AI Custom Hero", "Bot Hero Slot 3 Team 2", 0, 0)
-    BotSlot4team2 = createWorkshopSetting(int[0:33], "AI Custom Hero", "Bot Hero Slot 4 Team 2", 0, 0)
-    BotSlot5team2 = createWorkshopSetting(int[0:33], "AI Custom Hero", "Bot Hero Slot 5 Team 2", 0, 0)
-
-    #Setting: Debug Array for Custom Hero Setting [0 = No hero]
-    AllHeros.append(getAllHeroes())
+    Teams = createWorkshopSetting(enum["Default Teams", "Random teams + custom bot number", "Custom heroes"], "", "Team composition", 0, 0)
+    #Team composition
+    team1BotHeroes = [
+        createWorkshopSetting(Hero, " \nTeam composition (only applies with custom heroes)\n", "Team 1, Bot 1", Hero.ANA, 0),
+        createWorkshopSetting(Hero, " \nTeam composition (only applies with custom heroes)\n", "Team 1, Bot 2", Hero.MERCY, 1),
+        createWorkshopSetting(Hero, " \nTeam composition (only applies with custom heroes)\n", "Team 1, Bot 3", Hero.MCCREE, 2),
+        createWorkshopSetting(Hero, " \nTeam composition (only applies with custom heroes)\n", "Team 1, Bot 4", Hero.SOLDIER, 3),
+        createWorkshopSetting(Hero, " \nTeam composition (only applies with custom heroes)\n", "Team 1, Bot 5", Hero.REINHARDT, 4),
+        createWorkshopSetting(Hero, " \nTeam composition (only applies with custom heroes)\n", "Team 1, Bot 6", Hero.ZARYA, 5),
+    ]
+    team2BotHeroes = [
+        createWorkshopSetting(Hero, b" ", "Team 2, Bot 1", Hero.LUCIO, 6),
+        createWorkshopSetting(Hero, b" ", "Team 2, Bot 2", Hero.BAPTISTE, 7),
+        createWorkshopSetting(Hero, b" ", "Team 2, Bot 3", Hero.BASTION, 8),
+        createWorkshopSetting(Hero, b" ", "Team 2, Bot 4", Hero.MEI, 9),
+        createWorkshopSetting(Hero, b" ", "Team 2, Bot 5", Hero.ROADHOG, 10),
+        createWorkshopSetting(Hero, b" ", "Team 2, Bot 6", Hero.SIGMA, 11),
+    ]
 
 
 rule "Setting: Difficulty Settings for the Bots [Automatic]":

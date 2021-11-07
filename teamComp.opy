@@ -109,31 +109,12 @@ rule "Team: Spawn Custom Teams [Enable Team Option 2 and choose Custom Bots]":
     @Condition Teams == 2
     
     wait(35)
-    if BotSlot0team1 != 0:
-        createDummy(AllHeros[BotSlot0team1], Team.1, 0, vect(10000, 10000, 10000), vect(0, 0, 0))
-    if BotSlot1team1 != 0:
-        createDummy(AllHeros[BotSlot1team1], Team.1, 1, vect(10000, 10000, 10000), vect(0, 0, 0))
-    if BotSlot2team1 != 0:
-        createDummy(AllHeros[BotSlot2team1], Team.1, 2, vect(10000, 10000, 10000), vect(0, 0, 0))
-    if BotSlot3team1 != 0:
-        createDummy(AllHeros[BotSlot3team1], Team.1, 3, vect(10000, 10000, 10000), vect(0, 0, 0))
-    if BotSlot4team1 != 0:
-        createDummy(AllHeros[BotSlot4team1], Team.1, 4, vect(10000, 10000, 10000), vect(0, 0, 0))
-    if BotSlot5team1 != 0:
-        createDummy(AllHeros[BotSlot5team1], Team.1, 5, vect(10000, 10000, 10000), vect(0, 0, 0))
-    if BotSlot0team2 != 0:
-        createDummy(AllHeros[BotSlot0team2], Team.2, 0, vect(10000, 10000, 10000), vect(0, 0, 0))
-    if BotSlot1team2 != 0:
-        createDummy(AllHeros[BotSlot1team2], Team.2, 1, vect(10000, 10000, 10000), vect(0, 0, 0))
-    if BotSlot2team2 != 0:
-        createDummy(AllHeros[BotSlot2team2], Team.2, 2, vect(10000, 10000, 10000), vect(0, 0, 0))
-    if BotSlot3team2 != 0:
-        createDummy(AllHeros[BotSlot3team2], Team.2, 3, vect(10000, 10000, 10000), vect(0, 0, 0))
-    if BotSlot4team2 != 0:
-        createDummy(AllHeros[BotSlot4team2], Team.2, 4, vect(10000, 10000, 10000), vect(0, 0, 0))
-    if BotSlot5team2 != 0:
-        createDummy(AllHeros[BotSlot5team2], Team.2, 5, vect(10000, 10000, 10000), vect(0, 0, 0))
-
+    for I in range(BotsTeam1):
+        createDummy(team1BotHeroes[I], Team.1, I, vect(10000, 10000, 10000), vect(0, 0, 0))
+        
+    for I in range(BotsTeam2):
+        createDummy(team2BotHeroes[I], Team.2, I, vect(10000, 10000, 10000), vect(0, 0, 0))
+        
 
 rule "Team: Replace Left Player Team 1 [Enable Replacer Bots]":
     @Event playerLeft
