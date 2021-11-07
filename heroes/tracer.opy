@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Tracer Bot - Default":
     @Event eachPlayer

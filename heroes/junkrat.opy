@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Junkrat Bot - Default":
     @Event eachPlayer

@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Reinhardt Bot - Default":
     @Event eachPlayer

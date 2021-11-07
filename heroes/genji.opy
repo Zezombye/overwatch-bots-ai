@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Genji Bot - Default":
     @Event eachPlayer

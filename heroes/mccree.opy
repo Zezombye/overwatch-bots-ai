@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Mccree Bot - Default":
     @Event eachPlayer

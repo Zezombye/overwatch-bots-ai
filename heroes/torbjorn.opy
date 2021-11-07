@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Torbjörn Bot - Default":
     @Event eachPlayer

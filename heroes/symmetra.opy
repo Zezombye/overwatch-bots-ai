@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Symmetra Bot - Default":
     @Event eachPlayer

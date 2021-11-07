@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Moira Bot - Default":
     @Event eachPlayer

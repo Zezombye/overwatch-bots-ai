@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Reaper Bot - Default":
     @Event eachPlayer

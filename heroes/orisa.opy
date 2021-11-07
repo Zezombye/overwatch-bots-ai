@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Orisa Bot - Deafult":
     @Event eachPlayer

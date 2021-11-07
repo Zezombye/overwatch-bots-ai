@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 
 

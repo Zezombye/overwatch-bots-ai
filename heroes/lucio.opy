@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Lucio Bot - Default":
     @Event eachPlayer

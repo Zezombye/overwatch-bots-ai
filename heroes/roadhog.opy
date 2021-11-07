@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Roadhog Bot - Shoot Logic":
     @Event eachPlayer

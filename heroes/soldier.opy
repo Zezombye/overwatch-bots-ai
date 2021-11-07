@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Soldier: 76 Bot - Default":
     @Event eachPlayer

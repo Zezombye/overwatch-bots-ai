@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Zenyatta Bot - Enemy":
     @Event eachPlayer

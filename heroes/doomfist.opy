@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Doomfist Bot - Default":
     @Event eachPlayer

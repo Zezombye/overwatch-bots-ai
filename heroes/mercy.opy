@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Mercy Bot - Default":
     @Event eachPlayer

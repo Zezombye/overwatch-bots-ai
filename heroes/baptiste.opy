@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Baptiste Bot - Deafult Enemy":
     @Event eachPlayer

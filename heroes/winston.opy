@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Winston Bot - Default":
     @Event eachPlayer

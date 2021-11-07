@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "Hero AI: Ana Bot - Default Enemy":
     @Event eachPlayer
