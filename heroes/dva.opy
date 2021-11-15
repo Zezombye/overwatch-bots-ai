@@ -7,7 +7,7 @@ rule "Hero AI: D.Va Bot - Default":
     
     Action_Module_012_Health()
     Action_Module_001_UseAbility1()
-    if eventPlayer.Module_009_HalfHealth50 == true:
+    if eventPlayer.Module_009_HalfHealth50:
         Action_Module_003_UseUltimate()
         wait(0.25)
         if eventPlayer.getNormalizedHealth() <= 200:
@@ -15,7 +15,7 @@ rule "Hero AI: D.Va Bot - Default":
             Action_Module_007_UseSecondary_A()
     else:
         Action_Module_006_UsePrimary_A()
-    if eventPlayer.getMaxHealth() <= 200 and eventPlayer.Module_009_HalfHealth50 == true and eventPlayer.isFiringSecondaryFire() == false:
+    if eventPlayer.getMaxHealth() <= 200 and eventPlayer.Module_009_HalfHealth50 and eventPlayer.isFiringSecondaryFire() == false:
         Action_Module_006_UsePrimary_A()
     if eventPlayer.isFiringSecondaryFire() == false and eventPlayer.isUsingAbility1() == false:
         Action_Module_002_UseAbility2()

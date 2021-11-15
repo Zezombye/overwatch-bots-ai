@@ -6,11 +6,11 @@ rule "Hero AI: Symmetra Bot - Default":
     @Condition eventPlayer.Module_001_DummyBotEnemy == true
     
     Action_Module_002_UseAbility2()
-    if eventPlayer.isUsingAbility2() == true:
+    if eventPlayer.isUsingAbility2():
         eventPlayer.forceButtonPress(Button.PRIMARY_FIRE)
-    if eventPlayer.TookDamage == true:
+    if eventPlayer.TookDamage:
         eventPlayer.forceButtonPress(Button.ULTIMATE)
-    if eventPlayer.isUsingUltimate() == true:
+    if eventPlayer.isUsingUltimate():
         eventPlayer.forceButtonPress(Button.PRIMARY_FIRE)
     wait(eventPlayer.Bot_Waiting_Time)
     if RULE_CONDITION:

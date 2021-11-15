@@ -6,7 +6,7 @@ rule "Hero AI: Hanzo Bot - Default":
     @Condition eventPlayer.Module_001_DummyBotEnemy == true
     
     Action_Module_002_UseAbility2()
-    if eventPlayer.isInAir() == true:
+    if eventPlayer.isInAir():
         eventPlayer.forceButtonPress(Button.JUMP)
         wait(0.25)
         eventPlayer.startForcingButton(Button.JUMP)
@@ -24,7 +24,7 @@ rule "Hero AI: Hanzo Bot - Shoot Logic":
     @Hero hanzo
     @Condition eventPlayer.Module_001_DummyBotEnemy == true
     
-    if eventPlayer.isUsingAbility2() == true:
+    if eventPlayer.isUsingAbility2():
         Action_Module_004_UsePrimary_B()
     else:
         Action_Module_006_UsePrimary_A()
@@ -58,7 +58,7 @@ rule "Hero AI: Hanzo Bot - Ult Combo":
     @Event eachPlayer
     @Hero hanzo
     @Condition eventPlayer.BotActive == true
-    @Condition ([player for player in getPlayersOnHero(Hero.ZARYA, eventPlayer.getTeam()) if eventPlayer.isDummy() == true]).isUsingUltimate() == true
+    @Condition ([player for player in getPlayersOnHero(Hero.ZARYA, eventPlayer.getTeam()) if eventPlayer.isDummy()]).isUsingUltimate() == true
     @Condition eventPlayer.getUltCharge() == 100
     @Condition eventPlayer.StopFacing == false
     @Condition eventPlayer.hasStatusEffect(Status.HACKED) == false
@@ -84,7 +84,7 @@ rule "Hero AI: Hanzo Bot - Ult Combo 2":
     
     eventPlayer.StopFacing = true
     wait(0.25)
-    eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), ((sorted([player for player in getPlayers(eventPlayer.getTeam()) if player.ZaryaUlt == true], lambda i: distance(eventPlayer, i)))[0]).CurrentTarget), 10000, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
+    eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), ((sorted([player for player in getPlayers(eventPlayer.getTeam()) if player.ZaryaUlt], lambda i: distance(eventPlayer, i)))[0]).CurrentTarget), 10000, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
     wait(0.25)
     eventPlayer.forceButtonPress(Button.ULTIMATE)
     wait(1.5)

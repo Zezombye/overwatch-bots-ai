@@ -6,7 +6,7 @@ rule "Hero AI: Mei Bot - Default":
     @Condition eventPlayer.Module_001_DummyBotEnemy == true
     
     Action_Module_012_Health()
-    if eventPlayer.Module_009_HalfHealth50 == true:
+    if eventPlayer.Module_009_HalfHealth50:
         eventPlayer.forceButtonPress(Button.ABILITY_1)
         if eventPlayer.isUsingAbility1() == false:
             Action_Module_010_Selfuse_Start()
@@ -15,7 +15,7 @@ rule "Hero AI: Mei Bot - Default":
             Action_Module_004_UsePrimary_B()
             Action_Module_010_Selfuse_End()
         Action_Module_013_Ability1_S()
-    if eventPlayer.getUltCharge() == 100 and eventPlayer.Module_004_MidRange10m == true:
+    if eventPlayer.getUltCharge() == 100 and eventPlayer.Module_004_MidRange10m:
         eventPlayer.forceButtonPress(Button.ULTIMATE)
     wait(eventPlayer.Bot_Waiting_Time)
     if RULE_CONDITION:
@@ -29,7 +29,7 @@ rule "Hero AI: Mei Bot - Shoot Logic":
     @Condition eventPlayer.Module_001_DummyBotEnemy == true
     
     if distance(eventPlayer, eventPlayer.CurrentTarget[0]) < 6:
-        if eventPlayer.CurrentTarget[0].hasStatusEffect(Status.FROZEN) == true:
+        if eventPlayer.CurrentTarget[0].hasStatusEffect(Status.FROZEN):
             eventPlayer.forceButtonPress(Button.SECONDARY_FIRE)
         else:
             Action_Module_006_UsePrimary_A()

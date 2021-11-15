@@ -21,11 +21,11 @@ rule "Hero AI: Roadhog Bot - Default":
     
     Action_Module_012_Health()
     Action_Module_009_Distance_Info()
-    if eventPlayer.Module_009_HalfHealth50 == true:
+    if eventPlayer.Module_009_HalfHealth50:
         Action_Module_002_UseAbility2()
-    if eventPlayer.Module_005_LongRange15m == true:
+    if eventPlayer.Module_005_LongRange15m:
         Action_Module_001_UseAbility1()
-    if eventPlayer.Module_003_LowRange5m == true:
+    if eventPlayer.Module_003_LowRange5m:
         Action_Module_003_UseUltimate()
     wait(eventPlayer.Bot_Waiting_Time)
     if RULE_CONDITION:

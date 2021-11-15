@@ -23,7 +23,7 @@ rule "Hero AI: Sombra Bot - See Healthpack":
     @Event eachPlayer
     @Condition eventPlayer.BotActive == true
     
-    eventPlayer.CurrentHealthpack = sorted([player for player in HealthpackLocations if isInLoS(eventPlayer, player, BarrierLos.PASS_THROUGH_BARRIERS) == true], lambda i: distance(eventPlayer, i))
+    eventPlayer.CurrentHealthpack = sorted([player for player in HealthpackLocations if isInLoS(eventPlayer, player, BarrierLos.PASS_THROUGH_BARRIERS)], lambda i: distance(eventPlayer, i))
     wait(random.uniform(0.1, 0.3))
     goto RULE_START
 
