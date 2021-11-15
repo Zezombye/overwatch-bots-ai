@@ -7,11 +7,11 @@ rule "Hero AI: Ashe Bot - Default":
     
     Action_Module_003_UseUltimate()
     Action_Module_009_Distance_Info()
-    if eventPlayer.Module_004_MidRange10m == true:
+    if eventPlayer.Module_004_MidRange10m:
         Action_Module_002_UseAbility2()
-    if eventPlayer.Module_003_LowRange5m == true:
+    if eventPlayer.Module_003_LowRange5m:
         Action_Module_001_UseAbility1()
-    elif eventPlayer.TookDamage == true:
+    elif eventPlayer.TookDamage:
         Action_Module_010_Selfuse_Start()
         Action_Module_001_UseAbility1()
         Action_Module_010_Selfuse_End()
@@ -27,7 +27,7 @@ rule "Hero AI: Ashe Bot - Shoot Logic":
     @Condition eventPlayer.Module_001_DummyBotEnemy == true
     
     Action_Module_009_Distance_Info()
-    if eventPlayer.Module_003_LowRange5m == true:
+    if eventPlayer.Module_003_LowRange5m:
         eventPlayer.stopForcingButton(Button.SECONDARY_FIRE)
         Action_Module_004_UsePrimary_B()
     else:

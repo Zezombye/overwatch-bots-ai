@@ -7,15 +7,15 @@ rule "Hero AI: Ana Bot - Default Enemy":
     @Condition eventPlayer.Module_007_DummyBot_SeeDamagedA == false
     
     Action_Module_012_Health()
-    if eventPlayer.DealtDamage == true:
+    if eventPlayer.DealtDamage:
         Action_Module_001_UseAbility1()
-    if eventPlayer.Module_009_HalfHealth50 == true:
+    if eventPlayer.Module_009_HalfHealth50:
         Action_Module_010_Selfuse_Start()
         Action_Module_002_UseAbility2()
         Action_Module_010_Selfuse_End()
     else:
         Action_Module_002_UseAbility2()
-    if eventPlayer.CanSeeEnemy == true:
+    if eventPlayer.CanSeeEnemy:
         Action_Module_006_UsePrimary_A()
     wait(eventPlayer.Bot_Waiting_Time)
     if RULE_CONDITION:
@@ -29,7 +29,7 @@ rule "Hero AI: Ana Bot - Default Ally":
     
     Action_Module_012_Health()
     Action_Module_006_UsePrimary_A()
-    if eventPlayer.Module_009_HalfHealth50 == true:
+    if eventPlayer.Module_009_HalfHealth50:
         Action_Module_010_Selfuse_Start()
         Action_Module_002_UseAbility2()
         Action_Module_010_Selfuse_End()
@@ -41,3 +41,4 @@ rule "Hero AI: Ana Bot - Default Ally":
     wait(eventPlayer.Bot_Waiting_Time)
     if RULE_CONDITION:
         goto RULE_START
+    

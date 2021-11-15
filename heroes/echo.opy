@@ -6,13 +6,13 @@ rule "Hero AI: Echo Bot":
     @Condition eventPlayer.Module_001_DummyBotEnemy == true
     
     Action_Module_006_UsePrimary_A()
-    if eventPlayer.DealtDamage == true:
+    if eventPlayer.DealtDamage:
         Action_Module_003_UseUltimate()
         Action_Module_002_UseAbility2()
         Action_Module_005_UseSecondary_B()
-    if eventPlayer.TookDamage == true:
+    if eventPlayer.TookDamage:
         Action_Module_001_UseAbility1()
-    if eventPlayer.isUsingAbility1() == true:
+    if eventPlayer.isUsingAbility1():
         eventPlayer.startForcingButton(Button.JUMP)
     else:
         eventPlayer.stopForcingButton(Button.JUMP)

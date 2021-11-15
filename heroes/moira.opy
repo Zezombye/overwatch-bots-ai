@@ -5,9 +5,9 @@ rule "Hero AI: Moira Bot - Default":
     @Hero moira
     @Condition eventPlayer.Module_002_DummyBot == true
     
-    if eventPlayer.isUsingUltimate() == true:
+    if eventPlayer.isUsingUltimate():
         eventPlayer.CanHeal = true
-    if eventPlayer.TookDamage == true:
+    if eventPlayer.TookDamage:
         Action_Module_001_UseAbility1()
     wait(eventPlayer.Bot_Waiting_Time)
     if RULE_CONDITION:
@@ -24,12 +24,12 @@ rule "Hero AI: Moira Bot - Enemy":
     if eventPlayer.getUltCharge() == 100:
         Action_Module_003_UseUltimate()
     Action_Module_009_Distance_Info()
-    if eventPlayer.Module_004_MidRange10m == true:
+    if eventPlayer.Module_004_MidRange10m:
         eventPlayer.stopForcingButton(Button.PRIMARY_FIRE)
         Action_Module_007_UseSecondary_A()
     else:
         eventPlayer.stopForcingButton(Button.SECONDARY_FIRE)
-    if eventPlayer.MoiraOrbReady == true:
+    if eventPlayer.MoiraOrbReady:
         Action_Module_002_UseAbility2()
         wait(0.25)
         eventPlayer.forceButtonPress(Button.SECONDARY_FIRE)
@@ -46,12 +46,12 @@ rule "Hero AI: Moira Bot - Ally":
     
     eventPlayer.CanHeal = true
     Action_Module_009_Distance_Info()
-    if eventPlayer.Module_004_MidRange10m == true:
+    if eventPlayer.Module_004_MidRange10m:
         eventPlayer.stopForcingButton(Button.SECONDARY_FIRE)
         eventPlayer.startForcingButton(Button.PRIMARY_FIRE)
     else:
         eventPlayer.stopForcingButton(Button.PRIMARY_FIRE)
-    if eventPlayer.MoiraOrbReady == true:
+    if eventPlayer.MoiraOrbReady:
         Action_Module_002_UseAbility2()
         wait(0.25)
         eventPlayer.forceButtonPress(Button.PRIMARY_FIRE)

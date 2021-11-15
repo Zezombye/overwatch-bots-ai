@@ -5,29 +5,29 @@ rule "Hero AI: Doomfist Bot - Default":
     @Hero doomfist
     @Condition eventPlayer.Module_001_DummyBotEnemy == true
     
-    if eventPlayer.getUltCharge() == 100 and eventPlayer.DealtDamage == true:
+    if eventPlayer.getUltCharge() == 100 and eventPlayer.DealtDamage:
         Action_Module_003_UseUltimate()
-    if distance(eventPlayer, eventPlayer.CurrentTarget[0]) <= 1 and eventPlayer.isUsingUltimate() == true:
+    if distance(eventPlayer, eventPlayer.CurrentTarget[0]) <= 1 and eventPlayer.isUsingUltimate():
         Action_Module_004_UsePrimary_B()
     if eventPlayer.isUsingUltimate() == false:
         Action_Module_011_StartAction()
         Action_Module_009_Distance_Info()
-        if eventPlayer.Module_006_HighRange20m == true:
+        if eventPlayer.Module_006_HighRange20m:
             Action_Module_007_UseSecondary_A()
             Action_Module_008_UseSecondary_S()
             Action_Module_001_UseAbility1()
             Action_Module_013_Ability1_S()
-        if eventPlayer.Module_003_LowRange5m == true:
+        if eventPlayer.Module_003_LowRange5m:
             Action_Module_002_UseAbility2()
             Action_Module_014_Ability2_S()
             Action_Module_005_UseSecondary_B()
             Action_Module_008_UseSecondary_S()
             Action_Module_001_UseAbility1()
             Action_Module_013_Ability1_S()
-        if eventPlayer.Module_004_MidRange10m == true:
+        if eventPlayer.Module_004_MidRange10m:
             Action_Module_001_UseAbility1()
             Action_Module_013_Ability1_S()
-        if eventPlayer.Module_005_LongRange15m == true:
+        if eventPlayer.Module_005_LongRange15m:
             Action_Module_007_UseSecondary_A()
             Action_Module_008_UseSecondary_S()
             Action_Module_002_UseAbility2()

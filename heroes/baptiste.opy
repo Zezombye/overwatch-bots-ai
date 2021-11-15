@@ -7,13 +7,13 @@ rule "Hero AI: Baptiste Bot - Deafult Enemy":
     @Condition eventPlayer.Module_007_DummyBot_SeeDamagedA == false
     
     Action_Module_012_Health()
-    if eventPlayer.Module_011_OverHealth75 == true and eventPlayer.getUltCharge() == 100:
+    if eventPlayer.Module_011_OverHealth75 and eventPlayer.getUltCharge() == 100:
         Action_Module_010_Selfuse_Start()
         Action_Module_003_UseUltimate()
         Action_Module_010_Selfuse_End()
-    if eventPlayer.Module_010_HighHealth75 == true:
+    if eventPlayer.Module_010_HighHealth75:
         Action_Module_001_UseAbility1()
-    if eventPlayer.Module_009_HalfHealth50 == true:
+    if eventPlayer.Module_009_HalfHealth50:
         Action_Module_010_Selfuse_Start()
         Action_Module_002_UseAbility2()
         Action_Module_010_Selfuse_End()
@@ -45,9 +45,9 @@ rule "Hero AI: Baptiste Bot - Shoot Logic":
     @Hero baptiste
     @Condition eventPlayer.Module_002_DummyBot == true
     
-    if eventPlayer.CanSeeEnemy == true and eventPlayer.CanSeeDamagedAlly == false:
+    if eventPlayer.CanSeeEnemy and eventPlayer.CanSeeDamagedAlly == false:
         Action_Module_004_UsePrimary_B()
-    if eventPlayer.CanSeeDamagedAlly == true:
+    if eventPlayer.CanSeeDamagedAlly:
         Action_Module_005_UseSecondary_B()
     wait(eventPlayer.Bot_Waiting_Time)
     if RULE_CONDITION:

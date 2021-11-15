@@ -8,9 +8,9 @@ rule "Hero AI: Reinhardt Bot - Default":
     Action_Module_002_UseAbility2()
     Action_Module_009_Distance_Info()
     Action_Module_012_Health()
-    if eventPlayer.Module_004_MidRange10m == true:
+    if eventPlayer.Module_004_MidRange10m:
         Action_Module_003_UseUltimate()
-    if eventPlayer.Module_003_LowRange5m == true and eventPlayer.getNormalizedHealth() >= 0.5:
+    if eventPlayer.Module_003_LowRange5m and eventPlayer.getNormalizedHealth() >= 0.5:
         Action_Module_001_UseAbility1()
         wait(0.3)
         eventPlayer.stopForcingButton(Button.SECONDARY_FIRE)

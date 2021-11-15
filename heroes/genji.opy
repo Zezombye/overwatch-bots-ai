@@ -7,17 +7,17 @@ rule "Hero AI: Genji Bot - Default":
     
     Action_Module_009_Distance_Info()
     Action_Module_012_Health()
-    if eventPlayer.Module_004_MidRange10m == true and eventPlayer.Module_011_OverHealth75 == true and eventPlayer.DealtDamage == true:
+    if eventPlayer.Module_004_MidRange10m and eventPlayer.Module_011_OverHealth75 and eventPlayer.DealtDamage:
         eventPlayer.forceButtonPress(Button.ULTIMATE)
-    if eventPlayer.isInAir() == true:
+    if eventPlayer.isInAir():
         eventPlayer.forceButtonPress(Button.JUMP)
         wait(0.25)
         eventPlayer.startForcingButton(Button.JUMP)
     else:
         eventPlayer.stopForcingButton(Button.JUMP)
-    if eventPlayer.isUsingUltimate() == true:
+    if eventPlayer.isUsingUltimate():
         Action_Module_016_Chase_Ult()
-    if eventPlayer.Module_010_HighHealth75 == true and eventPlayer.TookDamage == true:
+    if eventPlayer.Module_010_HighHealth75 and eventPlayer.TookDamage:
         Action_Module_002_UseAbility2()
         Action_Module_014_Ability2_S()
     if distance(eventPlayer, eventPlayer.CurrentTarget[0]) <= 15 and eventPlayer.CurrentTarget[0].getHealth() <= 50:
@@ -34,7 +34,7 @@ rule "Hero AI: Genji Bot - Shoot Logic":
     @Condition eventPlayer.BotActive == true
     
     if distance(eventPlayer, eventPlayer.CurrentTarget[0]) <= 6:
-        if eventPlayer.isUsingUltimate() == true:
+        if eventPlayer.isUsingUltimate():
             Action_Module_004_UsePrimary_B()
         else:
             Action_Module_005_UseSecondary_B()

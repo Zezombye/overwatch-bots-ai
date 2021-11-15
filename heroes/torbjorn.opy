@@ -6,9 +6,9 @@ rule "Hero AI: Torbjörn Bot - Default":
     @Condition eventPlayer.Module_001_DummyBotEnemy == true
     
     Action_Module_001_UseAbility1()
-    if eventPlayer.TookDamage == true:
+    if eventPlayer.TookDamage:
         Action_Module_002_UseAbility2()
-    if eventPlayer.DealtDamage == true:
+    if eventPlayer.DealtDamage:
         Action_Module_003_UseUltimate()
     wait(eventPlayer.Bot_Waiting_Time)
     if RULE_CONDITION:

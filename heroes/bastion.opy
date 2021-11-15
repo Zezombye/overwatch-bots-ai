@@ -25,10 +25,10 @@ rule "Hero AI: Bastion Bot - Default Enemy":
     eventPlayer.stopForcingButton(Button.ABILITY_2)
     if eventPlayer.getUltCharge() == 100:
         goto lbl_0
-    if eventPlayer.BastionTurretMode == false and eventPlayer.isReloading() == true:
+    if eventPlayer.BastionTurretMode == false and eventPlayer.isReloading():
         Action_Module_001_UseAbility1()
         wait(0.5)
-        if eventPlayer.BastionTurretMode == true:
+        if eventPlayer.BastionTurretMode:
             return
         else:
             goto RULE_START
@@ -54,7 +54,7 @@ rule "Hero AI: Bastion Bot - Default No Enemy":
     else:
         eventPlayer.stopForcingButton(Button.ABILITY_2)
     wait(3, Wait.ABORT_WHEN_FALSE)
-    if eventPlayer.BastionTurretMode == true:
+    if eventPlayer.BastionTurretMode:
         Action_Module_001_UseAbility1()
     wait(eventPlayer.Bot_Waiting_Time)
     if RULE_CONDITION:
