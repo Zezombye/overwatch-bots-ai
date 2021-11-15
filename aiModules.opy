@@ -2,35 +2,41 @@
 
 rule "Module: Dummy Bot can See Enemy - FALSE":
     @Event eachPlayer
-    @Condition (eventPlayer.BotActive == true and eventPlayer.CanSeeEnemy == true and StartBots == true and ServerLoadIsHigh == false) == false
+    @Condition (eventPlayer.BotActive and eventPlayer.CanSeeEnemy and StartBots and ServerLoadIsHigh == false) == false
     
     eventPlayer.Module_001_DummyBotEnemy = false
 
 
 rule "Module: Dummy Bot can See Damaged Ally - TRUE":
     @Event eachPlayer
-    @Condition (eventPlayer.BotActive == true and eventPlayer.CanSeeDamagedAlly == true and StartBots == true and ServerLoadIsHigh == false) == true
+    @Condition eventPlayer.BotActive == true
+    @Condition eventPlayer.CanSeeDamagedAlly == true
+    @Condition StartBots == true
+    @Condition ServerLoadIsHigh == false
     
     eventPlayer.Module_007_DummyBot_SeeDamagedA = true
 
 
 rule "Module: Dummy Bot can See Damaged Ally - FALSE":
     @Event eachPlayer
-    @Condition (eventPlayer.BotActive == true and eventPlayer.CanSeeDamagedAlly == true and StartBots == true and ServerLoadIsHigh == false) == false
+    @Condition (eventPlayer.BotActive and eventPlayer.CanSeeDamagedAlly and StartBots and ServerLoadIsHigh == false) == false
     
     eventPlayer.Module_007_DummyBot_SeeDamagedA = false
 
 
 rule "Module: Dummy Bot - TRUE":
     @Event eachPlayer
-    @Condition (eventPlayer.BotActive == true and isGameInProgress() == true and StartBots == true and ServerLoadIsHigh == false) == true
+    @Condition eventPlayer.BotActive == true
+    @Condition isGameInProgress() == true 
+    @Condition StartBots == true 
+    @Condition ServerLoadIsHigh == false
     
     eventPlayer.Module_002_DummyBot = true
 
 
 rule "Module: Dummy Bot  - FALSE":
     @Event eachPlayer
-    @Condition (eventPlayer.BotActive == true and isGameInProgress() == true and StartBots == true and ServerLoadIsHigh == false) == false
+    @Condition (eventPlayer.BotActive and isGameInProgress() and StartBots and ServerLoadIsHigh == false) == false
     
     eventPlayer.Module_002_DummyBot = false
 
@@ -76,7 +82,7 @@ def Action_Module_006_UsePrimary_A():
 def Action_Module_007_UseSecondary_A():
     @Name "Action Module: Secondary Fire Automatic"
     
-    if eventPlayer.isFiringSecondaryFire() == true:
+    if eventPlayer.isFiringSecondaryFire():
         goto lbl_0
     eventPlayer.startForcingButton(Button.SECONDARY_FIRE)
     lbl_0:
@@ -150,9 +156,9 @@ def Action_Module_012_Health():
 def Action_Module_008_UseSecondary_S():
     @Name "Action Module: Wait for finish Secondary Fire"
     
-    if eventPlayer.isFiringSecondaryFire() == true:
+    if eventPlayer.isFiringSecondaryFire():
         wait(0.25)
-        if eventPlayer.isFiringSecondaryFire() == true:
+        if eventPlayer.isFiringSecondaryFire():
             goto RULE_START
     else:
         eventPlayer.stopForcingButton(Button.SECONDARY_FIRE)
@@ -161,9 +167,9 @@ def Action_Module_008_UseSecondary_S():
 def Action_Module_013_Ability1_S():
     @Name "Action Module: Wait for finish Ability 1"
     
-    if eventPlayer.isUsingAbility1() == true:
+    if eventPlayer.isUsingAbility1():
         wait(0.25)
-        if eventPlayer.isUsingAbility1() == true:
+        if eventPlayer.isUsingAbility1():
             goto RULE_START
     else:
 
@@ -171,9 +177,9 @@ def Action_Module_013_Ability1_S():
 def Action_Module_014_Ability2_S():
     @Name "Action Module: Wait for finish Ability 2"
     
-    if eventPlayer.isUsingAbility2() == true:
+    if eventPlayer.isUsingAbility2():
         wait(0.25)
-        if eventPlayer.isUsingAbility2() == true:
+        if eventPlayer.isUsingAbility2():
             goto RULE_START
     else:
 
@@ -181,9 +187,9 @@ def Action_Module_014_Ability2_S():
 def Action_Module_015_Ultimate_S():
     @Name "Action Module: Wait for finish Ultimate"
     
-    if eventPlayer.isUsingUltimate() == true:
+    if eventPlayer.isUsingUltimate():
         wait(0.25)
-        if eventPlayer.isUsingUltimate() == true:
+        if eventPlayer.isUsingUltimate():
             goto RULE_START
     else:
 
@@ -191,46 +197,52 @@ def Action_Module_015_Ultimate_S():
 def Action_Module_016_Chase_Ult():
     @Name "Action Module: Chase Enemy during ult"
     
-    if isInLoS(eventPlayer, eventPlayer.CurrentTarget[0], BarrierLos.PASS_THROUGH_BARRIERS) == true and eventPlayer.CurrentTarget != []:
+    if isInLoS(eventPlayer, eventPlayer.CurrentTarget[0], BarrierLos.PASS_THROUGH_BARRIERS) and eventPlayer.CurrentTarget != []:
         eventPlayer.StopAutomaticGoTo = false
         eventPlayer.CurrentGoToTarget = getClosestPlayer(eventPlayer, getOppositeTeam(eventPlayer.getTeam()))
-        eventPlayer.CurrentVisibleWaypoints = sorted([i for i in [player for player in Waypoints if isInLoS(eventPlayer, player, BarrierLos.PASS_THROUGH_BARRIERS) == true] if i in eventPlayer.WaypointBlacklist == false], lambda i: distance(i, eventPlayer.CurrentGoToTarget[0]))
+        eventPlayer.CurrentVisibleWaypoints = sorted([i for i in [player for player in Waypoints if isInLoS(eventPlayer, player, BarrierLos.PASS_THROUGH_BARRIERS)] if i in eventPlayer.WaypointBlacklist == false], lambda i: distance(i, eventPlayer.CurrentGoToTarget[0]))
         eventPlayer.startThrottleInDirection(directionTowards(eventPlayer, eventPlayer.CurrentVisibleWaypoints[0]), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
     else:
         eventPlayer.StopAutomaticGoTo = true
         eventPlayer.startThrottleInDirection(directionTowards(eventPlayer, eventPlayer.CurrentTarget[0]), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
     wait(eventPlayer.Bot_Waiting_Time)
-    if eventPlayer.isUsingUltimate() == true:
+    if eventPlayer.isUsingUltimate():
         goto RULE_START
 
 
 def Action_Module_017_Sec_S():
     @Name "Action Module: Wait for finish Sec"
     
-    if eventPlayer.isFiringSecondaryFire() == true:
+    if eventPlayer.isFiringSecondaryFire():
         wait(0.25)
-        if eventPlayer.isFiringSecondaryFire() == true:
+        if eventPlayer.isFiringSecondaryFire():
             goto RULE_START
     else:
 
 
 rule "Module: Dummy Bot can See Ally - TRUE":
     @Event eachPlayer
-    @Condition (eventPlayer.BotActive == true and eventPlayer.CanSeeAlly == true and StartBots == true and ServerLoadIsHigh == false) == true
+    @Condition eventPlayer.BotActive == true 
+    @Condition eventPlayer.CanSeeAlly == true 
+    @Condition StartBots == true 
+    @Condition ServerLoadIsHigh == false
     
     eventPlayer.Module_012_DummyBotAlly = true
 
 
 rule "Module: Dummy Bot can See Ally - FALSE":
     @Event eachPlayer
-    @Condition (eventPlayer.BotActive == true and eventPlayer.CanSeeAlly == true and StartBots == true and ServerLoadIsHigh == false) == false
+    @Condition (eventPlayer.BotActive and eventPlayer.CanSeeAlly and StartBots and ServerLoadIsHigh == false) == false
     
     eventPlayer.Module_012_DummyBotAlly = false
 
 
 rule "Module: Dummy Bot can See Enemy - TRUE":
     @Event eachPlayer
-    @Condition (eventPlayer.BotActive == true and eventPlayer.CanSeeEnemy == true and StartBots == true and ServerLoadIsHigh == false) == true
+    @Condition eventPlayer.BotActive == true 
+    @Condition eventPlayer.CanSeeEnemy == true 
+    @Condition StartBots == true 
+    @Condition ServerLoadIsHigh == false
     
     eventPlayer.Module_001_DummyBotEnemy = true
 

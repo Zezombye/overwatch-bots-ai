@@ -345,7 +345,7 @@ rule "Fix: Illios 2 Well":
     @Condition distance(eventPlayer, vect(-213.991, 1.07, -22.054)) > 2.5
     @Condition distance(eventPlayer, vect(-202.974, 1.011, -10.78)) > 2.5
     
-    eventPlayer.startThrottleInDirection(directionTowards(eventPlayer, (sorted([player for player in Waypoints if isInLoS(eventPlayer, player, BarrierLos.PASS_THROUGH_BARRIERS) == true], lambda i: distance(eventPlayer, i)))[0]), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
+    eventPlayer.startThrottleInDirection(directionTowards(eventPlayer, (sorted([player for player in Waypoints if isInLoS(eventPlayer, player, BarrierLos.PASS_THROUGH_BARRIERS)], lambda i: distance(eventPlayer, i)))[0]), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
     #wait(random.uniform(0.1, 0.5))
     #if RULE_CONDITION:
     #        goto RULE_START
