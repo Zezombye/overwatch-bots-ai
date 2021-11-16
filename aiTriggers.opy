@@ -4,7 +4,7 @@ rule "Condition: Ally is in LOS [TRUE]":
     @Event eachPlayer
     @Condition eventPlayer.BotActive == true
     
-    eventPlayer.CurrentAllyTarget = sorted([i for i in getLivingPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if isInLoS(eventPlayer, i, BarrierLos.PASS_THROUGH_BARRIERS) == true], lambda i: distance(eventPlayer, i))
+    eventPlayer.CurrentAllyTarget = sorted([i for i in getLivingPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if isInLoS(eventPlayer, i, BarrierLos.PASS_THROUGH_BARRIERS)], lambda i: distance(eventPlayer, i))
     wait(1.6)
     if RULE_CONDITION:
         goto RULE_START
@@ -31,7 +31,7 @@ rule "Condition: Dead Ally is in LOS [TRUE]":
     @Event eachPlayer
     @Condition eventPlayer.BotActive == true
     
-    eventPlayer.CurrentDeadAlly = sorted([i for i in getDeadPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if isInLoS(eventPlayer, i, BarrierLos.PASS_THROUGH_BARRIERS) == true], lambda i: distance(eventPlayer, i))
+    eventPlayer.CurrentDeadAlly = sorted([i for i in getDeadPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if isInLoS(eventPlayer, i, BarrierLos.PASS_THROUGH_BARRIERS)], lambda i: distance(eventPlayer, i))
     wait(1.6)
     if RULE_CONDITION:
         goto RULE_START
@@ -58,7 +58,7 @@ rule "Condition: Enemy is in LOS [TRUE]":
     @Event eachPlayer
     @Condition eventPlayer.BotActive == true
     
-    eventPlayer.CurrentTarget = [i for i in [i for i in [i for i in [i for i in [i for i in [i for i in [player for player in TargetArray if player.Stealth == false] if i.getTeam() == getOppositeTeam(eventPlayer.getTeam())] if i.hasStatusEffect(Status.UNKILLABLE) == false] if i.hasStatusEffect(Status.INVINCIBLE) == false] if eventPlayer.hasStatusEffect(Status.PHASED_OUT) == false] if i.isAlive() == true] if isInLoS(eventPlayer, i, BarrierLos.PASS_THROUGH_BARRIERS) == true]
+    eventPlayer.CurrentTarget = [i for i in [i for i in [i for i in [i for i in [i for i in [i for i in [player for player in TargetArray if player.Stealth == false] if i.getTeam() == getOppositeTeam(eventPlayer.getTeam())] if i.hasStatusEffect(Status.UNKILLABLE) == false] if i.hasStatusEffect(Status.INVINCIBLE) == false] if eventPlayer.hasStatusEffect(Status.PHASED_OUT) == false] if i.isAlive()] if isInLoS(eventPlayer, i, BarrierLos.PASS_THROUGH_BARRIERS)]
     wait(0.12)
     goto RULE_START
 
@@ -180,6 +180,6 @@ rule "Condition: See Damaged Allies for Heal":
     @Event eachPlayer
     @Condition (isGameInProgress() or getCurrentGamemode() == Gamemode.SKIRMISH) == true
     
-    eventPlayer.CurrentHealTarget = sorted([i for i in [i for i in [i for i in [player for player in getPlayers(eventPlayer.getTeam()) if eventPlayer != player] if isInLoS(eventPlayer, i, BarrierLos.PASS_THROUGH_BARRIERS) == true] if i.isAlive() == true] if i.getNormalizedHealth() != 1], lambda i: i.getHealth())
+    eventPlayer.CurrentHealTarget = sorted([i for i in [i for i in [i for i in [player for player in getPlayers(eventPlayer.getTeam()) if eventPlayer != player] if isInLoS(eventPlayer, i, BarrierLos.PASS_THROUGH_BARRIERS)] if i.isAlive()] if i.getNormalizedHealth() != 1], lambda i: i.getHealth())
     wait(random.uniform(0.1, 0.3))
     goto RULE_START

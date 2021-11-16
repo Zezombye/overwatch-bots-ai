@@ -32,7 +32,7 @@ rule "Hero AI: Zarya Bot - Ally Shield":
     @Condition eventPlayer.isAlive() == true
     @Condition eventPlayer.CanSeeDamagedAlly == true
     @Condition eventPlayer.CanSeeEnemy == true
-    @Condition eventPlayer.CurrentHealTarget[0].TookDamage == true == true
+    @Condition eventPlayer.CurrentHealTarget[0].TookDamage == true
     
     eventPlayer.StopShoot = true
     wait(0.25, Wait.ABORT_WHEN_FALSE)
@@ -64,7 +64,7 @@ rule "Hero AI: Zarya Bot - Ult":
     @Condition eventPlayer.BotActive == true
     @Condition StartBots == true
     @Condition eventPlayer.getUltCharge() == 100
-    @Condition eventPlayer.L == false == true
+    @Condition eventPlayer.L == false
     @Condition getNumberOfPlayersOnObjective(getOppositeTeam(eventPlayer.getTeam())) > 2
     @Condition eventPlayer.PlayerClosestToObjectiveCenter != []
     @Condition isInLoS(eventPlayer, eventPlayer.PlayerClosestToObjectiveCenter[0], BarrierLos.PASS_THROUGH_BARRIERS) == true

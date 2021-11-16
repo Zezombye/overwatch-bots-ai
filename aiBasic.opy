@@ -43,7 +43,7 @@ rule "Bots AI: Group in Spawn":
     @Event eachPlayer
     @Condition eventPlayer.isInSpawnRoom() == true
     @Condition isControlPointLocked() == false
-    @Condition getDeadPlayers(eventPlayer.getTeam()) != [] == true
+    @Condition getDeadPlayers(eventPlayer.getTeam()) != []
     @Condition eventPlayer.BotActive == true
     @Condition Difficulty > 3 == true
     
@@ -55,7 +55,7 @@ rule "Bots AI: Group in Spawn":
 
 rule "Bots AI: Clear Root in Spawn":
     @Event eachPlayer
-    @Condition getDeadPlayers(eventPlayer.getTeam()) == [] == true
+    @Condition getDeadPlayers(eventPlayer.getTeam()) == []
     @Condition eventPlayer.BotActive == true
     
     eventPlayer.clearStatusEffect(Status.ROOTED)
@@ -140,7 +140,7 @@ rule "Fix: Between Rounds":
     @Condition isMatchBetweenRounds() == true
     
     StartBots = 0
-    ([player for player in getAllPlayers() if player.BotActive == true]).setStatusEffect(null, Status.ROOTED, 30)
+    ([player for player in getAllPlayers() if player.BotActive]).setStatusEffect(null, Status.ROOTED, 30)
     getAllPlayers().stopThrottleInDirection()
 
 
@@ -157,7 +157,7 @@ rule "Fix: Blacklist - Healthpacks":
 rule "Fix: Clear Black List":
     @Event eachPlayer
     @Condition eventPlayer.BotActive == true
-    @Condition eventPlayer.WaypointBlacklist != [] == true
+    @Condition eventPlayer.WaypointBlacklist != []
     
     wait(10)
     del eventPlayer.WaypointBlacklist[0]

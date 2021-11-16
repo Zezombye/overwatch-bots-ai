@@ -10,7 +10,7 @@ rule "Hero AI: Brigitte Bot - Heal Allies":
     
     eventPlayer.CanHeal = true
     Action_Module_002_UseAbility2()
-    if eventPlayer.CurrentHealTarget[0].TookDamage == true and distance(eventPlayer, eventPlayer.CurrentHealTarget[0]) < 8 and eventPlayer.CurrentHealTarget[0].getNormalizedHealth() < 0.6:
+    if eventPlayer.CurrentHealTarget[0].TookDamage and distance(eventPlayer, eventPlayer.CurrentHealTarget[0]) < 8 and eventPlayer.CurrentHealTarget[0].getNormalizedHealth() < 0.6:
         eventPlayer.forceButtonPress(Button.ULTIMATE)
     wait(eventPlayer.Bot_Waiting_Time)
     if RULE_CONDITION:
@@ -33,7 +33,7 @@ rule "Hero AI: Brigitte Bot - Default":
     
     Action_Module_009_Distance_Info()
     Action_Module_012_Health()
-    if eventPlayer.Module_003_LowRange5m == true and eventPlayer.getNormalizedHealth() >= 0.5:
+    if eventPlayer.Module_003_LowRange5m and eventPlayer.getNormalizedHealth() >= 0.5:
         Action_Module_001_UseAbility1()
         wait(0.3)
         eventPlayer.stopForcingButton(Button.SECONDARY_FIRE)

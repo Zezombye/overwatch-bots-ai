@@ -46,7 +46,7 @@ rule "Hero AI: Widowmaker Bot  - Poison Mine + Ult":
     eventPlayer.forceButtonPress(Button.ABILITY_2)
     lbl_0:
     lbl_1:
-    if eventPlayer.CanSeeEnemy == true:
+    if eventPlayer.CanSeeEnemy:
         goto lbl_2
     if eventPlayer.getUltCharge() != 100:
         goto lbl_3

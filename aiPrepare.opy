@@ -118,7 +118,7 @@ rule "Prepare: PlayerClosestToObjectiveCenter":
     @Condition eventPlayer.BotActive == true
     @Condition eventPlayer.CanSeeEnemy == true
     
-    eventPlayer.PlayerClosestToObjectiveCenter = sorted([i for i in [player for player in getPlayersOnObjective(getOppositeTeam(eventPlayer.getTeam())) if isInLoS(eventPlayer, player, BarrierLos.PASS_THROUGH_BARRIERS) == true] if distance(i, getObjectivePosition(getCurrentObjective())) <= 3], lambda i: distance(i, getObjectivePosition(getCurrentObjective())))
+    eventPlayer.PlayerClosestToObjectiveCenter = sorted([i for i in [player for player in getPlayersOnObjective(getOppositeTeam(eventPlayer.getTeam())) if isInLoS(eventPlayer, player, BarrierLos.PASS_THROUGH_BARRIERS)] if distance(i, getObjectivePosition(getCurrentObjective())) <= 3], lambda i: distance(i, getObjectivePosition(getCurrentObjective())))
     wait(random.uniform(0.2, 0.6))
     if RULE_CONDITION:
         goto RULE_START
@@ -182,7 +182,7 @@ rule "Prepare: Stop Shoot":
     eventPlayer.stopForcingButton(Button.PRIMARY_FIRE)
     eventPlayer.stopForcingButton(Button.JUMP)
     eventPlayer.stopForcingButton(Button.CROUCH)
-    if eventPlayer.getCurrentHero() == Hero.WIDOWMAKER and eventPlayer.isStanding() == true:
+    if eventPlayer.getCurrentHero() == Hero.WIDOWMAKER and eventPlayer.isStanding():
         goto lbl_0
     eventPlayer.stopForcingButton(Button.SECONDARY_FIRE)
     lbl_0:

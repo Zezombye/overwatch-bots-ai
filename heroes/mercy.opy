@@ -9,19 +9,19 @@ rule "Hero AI: Mercy Bot - Default":
         eventPlayer.startForcingButton(Button.ABILITY_1)
     else:
         eventPlayer.stopForcingButton(Button.ABILITY_1)
-    if eventPlayer.CanSeeEnemy and eventPlayer.CanSeeDamagedAlly == true:
+    if eventPlayer.CanSeeEnemy and eventPlayer.CanSeeDamagedAlly:
         eventPlayer.forceButtonPress(Button.ULTIMATE)
-    if eventPlayer.isUsingUltimate() == true:
+    if eventPlayer.isUsingUltimate():
         eventPlayer.startForcingButton(Button.JUMP)
     else:
-        if eventPlayer.isInAir() == true and eventPlayer.getNormalizedHealth() > 0.6:
+        if eventPlayer.isInAir() and eventPlayer.getNormalizedHealth() > 0.6:
             eventPlayer.startForcingButton(Button.JUMP)
         else:
             eventPlayer.stopForcingButton(Button.JUMP)
     if eventPlayer.CanSeeDamagedAlly == false and eventPlayer.CanSeeAlly == false:
         Action_Module_011_StartAction()
         eventPlayer.StopAutomaticGoTo = false
-        if eventPlayer.isOnObjective() == true:
+        if eventPlayer.isOnObjective():
             eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.CurrentVisibleWaypoints[0]), 200, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
         else:
             eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.RandomFacingDirection[0]), random.uniform(300, 600), Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
@@ -34,8 +34,7 @@ rule "Hero AI: Mercy Bot - Damaged Ally":
     @Event eachPlayer
     @Hero mercy
     @Condition eventPlayer.Module_007_DummyBot_SeeDamagedA == true
-    @Condition eventPlayer.CanSeeDeadAlly == false
-    @Condition (eventPlayer.CanSeeDeadAlly == false and eventPlayer.Mercy_Rez == true or eventPlayer.Mercy_Rez == false) == true
+    @Condition (not eventPlayer.CanSeeDeadAlly and eventPlayer.Mercy_Rez or not eventPlayer.Mercy_Rez) == true
     
     eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.CurrentHealTarget[0].getEyePosition()), 200, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
     eventPlayer.StopAutomaticGoTo = true
@@ -59,7 +58,7 @@ rule "Hero AI: Mercy Bot - Ally":
     @Hero mercy
     @Condition eventPlayer.Module_007_DummyBot_SeeDamagedA == false
     @Condition eventPlayer.Module_012_DummyBotAlly == true
-    @Condition (eventPlayer.CanSeeDeadAlly == false and eventPlayer.Mercy_Rez == true or eventPlayer.Mercy_Rez == false) == true
+    @Condition (not eventPlayer.CanSeeDeadAlly and eventPlayer.Mercy_Rez or not eventPlayer.Mercy_Rez) == true
     
     eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.CurrentAllyTarget[0].getEyePosition()), 200, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
     eventPlayer.StopAutomaticGoTo = true

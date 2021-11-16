@@ -250,5 +250,5 @@ rule "Fix: Oasis 3: Hole":
     @Condition distance(eventPlayer, getObjectivePosition(getCurrentObjective())) < 3
     @Condition eventPlayer.BotActive == true
     
-    eventPlayer.startThrottleInDirection(directionTowards(eventPlayer, (sorted([player for player in Waypoints if isInLoS(eventPlayer, player, BarrierLos.PASS_THROUGH_BARRIERS) == true], lambda i: distance(eventPlayer, i)))[0]), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
+    eventPlayer.startThrottleInDirection(directionTowards(eventPlayer, (sorted([player for player in Waypoints if isInLoS(eventPlayer, player, BarrierLos.PASS_THROUGH_BARRIERS)], lambda i: distance(eventPlayer, i)))[0]), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
     wait(1.5)

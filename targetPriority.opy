@@ -6,11 +6,11 @@ rule "Target: Priority based on Hero Class - In Spawn":
     @Condition (isGameInProgress() or getCurrentGamemode() == Gamemode.SKIRMISH) == true
     @Condition eventPlayer.isInSpawnRoom() == true
     
-    if eventPlayer.getCurrentHero() in getTankHeroes() == true:
+    if eventPlayer.getCurrentHero() in getTankHeroes():
         eventPlayer.HeroPriorityRating = 0
-    if eventPlayer.getCurrentHero() in getDamageHeroes() == true:
+    if eventPlayer.getCurrentHero() in getDamageHeroes():
         eventPlayer.HeroPriorityRating = 1
-    if eventPlayer.getCurrentHero() in getSupportHeroes() == true:
+    if eventPlayer.getCurrentHero() in getSupportHeroes():
         eventPlayer.HeroPriorityRating = 2
 
 
@@ -20,11 +20,11 @@ rule "Target: Priority based on Hero Class - Not In Spawn":
     @Condition (isGameInProgress() or getCurrentGamemode() == Gamemode.SKIRMISH) == true
     @Condition eventPlayer.isInSpawnRoom() == false
     
-    if eventPlayer.getCurrentHero() in getTankHeroes() == true:
+    if eventPlayer.getCurrentHero() in getTankHeroes():
         eventPlayer.HeroPriorityRating = 0
-    if eventPlayer.getCurrentHero() in getDamageHeroes() == true:
+    if eventPlayer.getCurrentHero() in getDamageHeroes():
         eventPlayer.HeroPriorityRating = 1
-    if eventPlayer.getCurrentHero() in getSupportHeroes() == true:
+    if eventPlayer.getCurrentHero() in getSupportHeroes():
         eventPlayer.HeroPriorityRating = 2
 
 
@@ -34,7 +34,7 @@ rule "Target: Change Priority":
     @Condition (isGameInProgress() or getCurrentGamemode() == Gamemode.SKIRMISH) == true
     @Condition eventPlayer.isInSpawnRoom() == false
     
-    if eventPlayer.isUsingUltimate() == true:
+    if eventPlayer.isUsingUltimate():
         eventPlayer.HeroPriorityRating += 1
         wait(7, Wait.ABORT_WHEN_FALSE)
         eventPlayer.HeroPriorityRating -= 1
@@ -42,7 +42,7 @@ rule "Target: Change Priority":
         eventPlayer.HeroPriorityRating += 1
     if eventPlayer.getNormalizedHealth() <= 0.3:
         eventPlayer.HeroPriorityRating += 1
-    if eventPlayer.isOnFire() == true:
+    if eventPlayer.isOnFire():
         eventPlayer.HeroPriorityRating += 1
     wait(1)
     if RULE_CONDITION:
