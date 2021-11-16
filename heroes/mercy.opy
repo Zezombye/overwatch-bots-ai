@@ -34,9 +34,7 @@ rule "Hero AI: Mercy Bot - Damaged Ally":
     @Event eachPlayer
     @Hero mercy
     @Condition eventPlayer.Module_007_DummyBot_SeeDamagedA == true
-    @Condition eventPlayer.CanSeeDeadAlly == false
-    @Condition eventPlayer.CanSeeDeadAlly == false
-    @Condition (eventPlayer.Mercy_Rez or not eventPlayer.Mercy_Rez) == true
+    @Condition (not eventPlayer.CanSeeDeadAlly and eventPlayer.Mercy_Rez or not eventPlayer.Mercy_Rez) == true
     
     eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.CurrentHealTarget[0].getEyePosition()), 200, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
     eventPlayer.StopAutomaticGoTo = true
@@ -60,8 +58,7 @@ rule "Hero AI: Mercy Bot - Ally":
     @Hero mercy
     @Condition eventPlayer.Module_007_DummyBot_SeeDamagedA == false
     @Condition eventPlayer.Module_012_DummyBotAlly == true
-    @Condition eventPlayer.CanSeeDeadAlly == false 
-    @Condition (eventPlayer.Mercy_Rez or not eventPlayer.Mercy_Rez) == true
+    @Condition (not eventPlayer.CanSeeDeadAlly and eventPlayer.Mercy_Rez or not eventPlayer.Mercy_Rez) == true
     
     eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.CurrentAllyTarget[0].getEyePosition()), 200, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
     eventPlayer.StopAutomaticGoTo = true
