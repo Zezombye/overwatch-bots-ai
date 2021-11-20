@@ -1,5 +1,6 @@
 # overwatch-bots-ai
-Generic gamemode to fight against workshop bots. Previously built on DalgonAI, now transitioning to being built from scratch.
+
+Generic gamemode to fight against workshop bots. Takes some elements from DalgonAI.
 
 First version should include:
 - 6 heroes
