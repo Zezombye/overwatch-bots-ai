@@ -68,9 +68,9 @@ globalvar nodePositions
     nodePositions = POSITIONS_LIJIANG_GARDEN*/
 
 def loadNepalShrine():
-    #alphabet = ALPHABET_NEPAL_SHRINE
-    #compressedData = DATA_NEPAL_SHRINE
-    #nodePositions = POSITIONS_NEPAL_SHRINE
+    alphabet = ALPHABET_NEPAL_SHRINE
+    compressedData = DATA_NEPAL_SHRINE
+    nodePositions = POSITIONS_NEPAL_SHRINE
 
 /*def loadNepalVillage():
     alphabet = ALPHABET_ECOPOINT_ANTARCTICA
