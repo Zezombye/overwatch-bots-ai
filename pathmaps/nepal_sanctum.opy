@@ -1,1 +1,1 @@
-#todo
+#!mainFile "../main.opy"
