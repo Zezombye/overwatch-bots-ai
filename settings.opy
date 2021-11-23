@@ -6,7 +6,8 @@ settings {
         "modeName": "Overwatch bot AI"
     },
     "lobby": {
-        "team2Slots": 0
+        #need 2 slots, else ana can't nano others
+        "team2Slots": 2
     },
     "gamemodes": {
         "control": {

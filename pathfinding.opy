@@ -2,7 +2,6 @@
 
 #!define NB_NODES len(nodePositions)
 
-#!extension spawnMoreDummyBots
 
 /*
 For this example gamemode there will be 3 states for the AI which is a Reinhardt.
@@ -23,8 +22,6 @@ enum BotWalkBehavior:
     WALKING,
     FIGHTING,
 
-globalvar i
-globalvar j
 globalvar uncompressedData = []
 globalvar timer
 globalvar currentNodeArray
@@ -34,24 +31,24 @@ globalvar message
 
 playervar targetNode = -1 #-1 means there is no target node, so one must be found.
 playervar destNode
-playervar targetPlayer = null
 playervar walkBehavior = BotWalkBehavior.IDLING
 #If the bot does not reach the target node in time, the target node is reinitialized, as the bot was probably booped or similar.
 playervar timeRemainingToNode
-playervar name #needed because apparently spectators can't see dummy bot names
+playervar pathToTake
+playervar pathNodeIndex
 
 enum Message:
     NO_PATHMAP,
     DECOMPRESSING,
     FINISHED_DECOMPRESSION,
 
-enum Team:
-    HUMANS = Team.1,
-    BOTS = Team.2,
 
 globalvar alphabet
 globalvar compressedData
 globalvar nodePositions
+#The first objective node is the node to go to from spawn (in case of control/2cp).
+globalvar objectiveNodes
+globalvar paths
 
 #!define NODE_RADIUS 1
 #!define BOT_SPEED 5.5
@@ -66,6 +63,8 @@ def loadNepalShrine():
     alphabet = ALPHABET_NEPAL_SHRINE
     compressedData = DATA_NEPAL_SHRINE
     nodePositions = POSITIONS_NEPAL_SHRINE
+    objectiveNodes = OBJECTIVE_NODES_NEPAL_SHRINE
+    paths = PATHS_NEPAL_SHRINE
 
 /*def loadNepalVillage():
     alphabet = ALPHABET_ECOPOINT_ANTARCTICA
@@ -77,8 +76,7 @@ rule "Load built-in pathmaps":
     #Load the pathmap based on the map
     loadNepalShrine()
 
-rule "Initialize gamemode and decompress pathmap":
-    print("load: {} | avg: {} | max: {}".format(getServerLoad(), getAverageServerLoad(), getPeakServerLoad()))
+rule "Decompress pathmap":
     #print("No pathmap for map {}".format(getCurrentMap()) if message == Message.NO_PATHMAP else "Node graph out of date. Rebuilding... {}s elapsed".format(timer) if message == Message.DECOMPRESSING else "Finished loading pathmap in {}s".format(timer))
 
     #Uncompress the pathmap
@@ -114,25 +112,11 @@ rule "Initialize gamemode and decompress pathmap":
     enableInspector()
     message = Message.FINISHED_DECOMPRESSION
 
-    #Now that we have finished decompressing, spawn the bots.
-    for i in range(6):
-        createDummy(Hero.REINHARDT, Team.BOTS, i, getSpawnPoints(Team.BOTS)[i], null)
 
-rule "Initialize dummy":
+rule "Init bot":
     @Event eachPlayer
     @Condition eventPlayer.isDummy()
-    hudText(getAllPlayers(), 
-        "{}".format(eventPlayer.name),
-        "Targeting player: {}, mode: {}".format(eventPlayer.targetPlayer, "idling" if eventPlayer.walkBehavior == BotWalkBehavior.IDLING else "walking" if eventPlayer.walkBehavior == BotWalkBehavior.WALKING else "fighting"), 
-        "Target node: {} ({}s left), dest node: {}".format(eventPlayer.targetNode, eventPlayer.timeRemainingToNode, eventPlayer.destNode),
-        HudPosition.LEFT, eventPlayer.getSlot(), Color.WHITE, Color.WHITE, Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.ALWAYS
-    )
-    createEffect(getAllPlayers(), Effect.SPHERE, Color.GREEN, nodePositions[eventPlayer.destNode], NODE_RADIUS, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
-    createEffect(getAllPlayers(), Effect.SPHERE, Color.BLUE, nodePositions[eventPlayer.targetNode], NODE_RADIUS, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
-    createIcon(getAllPlayers(), eventPlayer, Icon.SKULL, IconReeval.VISIBILITY_AND_POSITION, Color.RED, true)
     chase(eventPlayer.timeRemainingToNode, 0, rate=1, ChaseReeval.NONE)
-    eventPlayer.name = "Reinhardt {}".format(eventPlayer.getSlot())
-    eventPlayer.startForcingName(eventPlayer.name)
 
 rule "Bot is idling - stop throttle and pressing buttons":
     @Event eachPlayer
@@ -144,39 +128,24 @@ rule "Bot is idling - stop throttle and pressing buttons":
     eventPlayer.targetNode = -1
     eventPlayer.timeRemainingToNode = 0
 
-rule "Find a suitable enemy":
-    @Event eachPlayer
-    @Condition eventPlayer.isDummy()
-    @Condition eventPlayer.walkBehavior == BotWalkBehavior.IDLING
-    @Condition eventPlayer.hasSpawned()
-    @Condition eventPlayer.isAlive()
-    do:
-        #Take the closest enemy player that is alive and spawned.
-        eventPlayer.targetPlayer = sorted([p for p in getPlayers(getOppositeTeam(eventPlayer.getTeam())) if p != eventPlayer and p.isAlive() and p.hasSpawned()], lambda x: distance(eventPlayer, x))[0]
-        wait(0.5)
-    while RULE_CONDITION
 
-rule "Periodically update destination node":
+rule "Set destination node":
     @Event eachPlayer
     @Condition eventPlayer.isDummy()
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
-    do:
-        #The destination node is the closest node that is in line of sight of the target player.
-        eventPlayer.destNode = nodePositions.index(sorted([pos for pos in nodePositions if isInLoS(pos+vect(0,NODE_RADIUS,0), eventPlayer.targetPlayer.getEyePosition(), BarrierLos.PASS_THROUGH_BARRIERS)], lambda pos: distance(eventPlayer.targetPlayer.getPosition(), pos))[0])
-        if eventPlayer.destNode == -1:
-            eventPlayer.walkBehavior = BotWalkBehavior.IDLING
-            return
-        wait(1)
-    while RULE_CONDITION
+    eventPlayer.pathToTake = random.randint(0, len(paths))
+    eventPlayer.pathNodeIndex = 0
+    eventPlayer.destNode = eventPlayer.pathToTake[0]
 
 
-rule "An enemy was found - switch to walking mode":
+rule "All bots are in spawn - switch to walking mode":
     @Event eachPlayer
     @Condition eventPlayer.isDummy()
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.IDLING
-    @Condition eventPlayer.targetPlayer != null
+    @Condition getNumberOfLivingPlayers(Team.BOTS) == 6
+    @Condition all([player.isInSpawnRoom() for player in getPlayers(Team.BOTS)])
     eventPlayer.walkBehavior = BotWalkBehavior.WALKING
-    eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.targetPlayer.getPosition()+vect(0,1.5,0)), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
+    #eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.targetPlayer.getPosition()+vect(0,1.5,0)), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
     eventPlayer.startThrottleInDirection(directionTowards(eventPlayer.getPosition(), nodePositions[eventPlayer.targetNode]), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
 
 rule "Initialize target node":
@@ -194,7 +163,7 @@ rule "Initialize target node":
     #Put wiggle room by setting it to 2x the distance, in case the bot is slowed down by a boop, slight wall, or similar.
     eventPlayer.timeRemainingToNode = distance(nodePositions[eventPlayer.targetNode], eventPlayer.getPosition())*2/BOT_SPEED + 0.5
 
-rule "Enemy is in range - set mode to fighting":
+/*rule "Enemy is in range - set mode to fighting":
     @Event eachPlayer
     @Condition eventPlayer.isDummy()
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
@@ -221,9 +190,9 @@ rule "Enemy is no longer in range - set mode back to idling":
     do:
         wait(5, Wait.ABORT_WHEN_FALSE)
         eventPlayer.walkBehavior = BotWalkBehavior.IDLING
-    while RULE_CONDITION
+    while RULE_CONDITION*/
 
-rule "Fire firecharges on enemy when in walking mode":
+/*rule "Fire firecharges on enemy when in walking mode":
     @Event eachPlayer
     @Condition eventPlayer.isDummy()
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
@@ -231,13 +200,13 @@ rule "Fire firecharges on enemy when in walking mode":
     do:
         eventPlayer.forceButtonPress(Button.ABILITY_2)
         wait(random.uniform(0.5, 5), Wait.ABORT_WHEN_FALSE)
-    while RULE_CONDITION
+    while RULE_CONDITION*/
 
-rule "Enemy is dead - set mode back to walking and enemy to null":
+/*rule "Enemy is dead - set mode back to walking and enemy to null":
     @Event eachPlayer
     @Condition eventPlayer.targetPlayer.isDead() or not eventPlayer.targetPlayer.hasSpawned() or eventPlayer.isDead() or not eventPlayer.hasSpawned()
     eventPlayer.targetPlayer = null
-    eventPlayer.walkBehavior = BotWalkBehavior.IDLING
+    eventPlayer.walkBehavior = BotWalkBehavior.IDLING*/
 
 
 rule "Jump over cliffs":
@@ -278,7 +247,20 @@ rule "Target node was reached":
             eventPlayer.stopThrottleInDirection()
             return
         if eventPlayer.targetNode == eventPlayer.destNode:
-            eventPlayer.walkBehavior = BotWalkBehavior.FIGHTING
+            #eventPlayer.walkBehavior = BotWalkBehavior.FIGHTING
+
+            #Update destination node
+            if eventPlayer.pathNodeIndex > len(eventPlayer.pathToTake):
+                #Path is already done, and the bot already reached the objective; take a random node to make the bot walk around the objective.
+                #TODO: use isOnObjective() for that?
+                eventPlayer.destNode = random.choice(objectiveNodes)
+            else:
+                eventPlayer.pathNodeIndex++
+                if eventPlayer.pathNodeIndex > len(eventPlayer.pathToTake):
+                    #Path is done, now go to objective
+                    eventPlayer.destNode = objectiveNodes[0]
+                else:
+                    eventPlayer.destNode = eventPlayer.pathToTake[eventPlayer.pathNodeIndex]
         #Put wiggle room by setting it to 2x the distance, in case the bot is slowed down by a boop, slight wall, or similar.
         eventPlayer.timeRemainingToNode = distance(nodePositions[eventPlayer.targetNode], eventPlayer.getPosition())*2/BOT_SPEED + 0.5
         wait()
