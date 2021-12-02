@@ -15,8 +15,8 @@ rule "debug pathfinding":
     
     hudText(getAllPlayers(), 
         "{}".format(eventPlayer.name),
-        #"Targeting player: {}, mode: {}".format(eventPlayer.targetPlayer, "idling" if eventPlayer.walkBehavior == BotWalkBehavior.IDLING else "walking" if eventPlayer.walkBehavior == BotWalkBehavior.WALKING else "fighting"),
-        "Taking path: {}".format(eventPlayer.pathToTake),
+        "Targeting player: {}, mode: {}".format(eventPlayer.targetPlayer, "idling" if eventPlayer.walkBehavior == BotWalkBehavior.IDLING else "walking" if eventPlayer.walkBehavior == BotWalkBehavior.WALKING else "fighting"),
+        #"Taking path: {}".format(eventPlayer.pathToTake),
         "Target node: {} ({}s left), dest node: {}".format(eventPlayer.targetNode, eventPlayer.timeRemainingToNode, eventPlayer.destNode),
         HudPosition.LEFT, eventPlayer.getSlot(), Color.WHITE, Color.WHITE, Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.ALWAYS
     )

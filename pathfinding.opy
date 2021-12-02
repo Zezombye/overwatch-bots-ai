@@ -36,6 +36,9 @@ playervar walkBehavior = BotWalkBehavior.IDLING
 playervar timeRemainingToNode
 playervar pathToTake
 playervar pathNodeIndex
+# Targeting
+playervar seenEnemies
+playervar targetPlayer
 
 enum Message:
     NO_PATHMAP,
@@ -138,6 +141,14 @@ rule "Set destination node":
     eventPlayer.destNode = eventPlayer.pathToTake[0]
 
 
+rule "When walking, go to target node":
+    @Event eachPlayer
+    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
+
+    eventPlayer.startThrottleInDirection(directionTowards(eventPlayer.getPosition(), nodePositions[eventPlayer.targetNode]), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
+
+
 rule "All bots are in spawn - switch to walking mode":
     @Event eachPlayer
     @Condition eventPlayer.isDummy()
@@ -146,7 +157,6 @@ rule "All bots are in spawn - switch to walking mode":
     @Condition all([player.isInSpawnRoom() for player in getPlayers(Team.BOTS)])
     eventPlayer.walkBehavior = BotWalkBehavior.WALKING
     #eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.targetPlayer.getPosition()+vect(0,1.5,0)), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
-    eventPlayer.startThrottleInDirection(directionTowards(eventPlayer.getPosition(), nodePositions[eventPlayer.targetNode]), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
 
 rule "Initialize target node":
     @Event eachPlayer
