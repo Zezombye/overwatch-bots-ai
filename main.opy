@@ -58,7 +58,9 @@ rule "Initialize dummy":
 
 
 #!include "pathmaps/"
+#!include "target_priority.opy"
 #!include "pathfinding.opy"
+#!include "actions.opy"
 
 #!include "debug.opy"
 
