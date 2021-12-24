@@ -27,8 +27,8 @@ rule "Calculate threat":
     eventPlayer.threat = 8 * eventPlayer.getNormalizedHealth() + min(10 / distance(eventPlayer.getPosition(), getClosestPlayer(eventPlayer, eventPlayer.getTeam())), 3) + (10 - eventPlayer.getAbilityCooldown(Button.ABILITY_1)) + (10 - eventPlayer.getAbilityCooldown(Button.ABILITY_2)) + 10 * eventPlayer.isUsingUltimate() + random.randint(-3, 3)
 
     # When the enemy decides to ult, it's important that the value gets changed immediately so that the bots can react in time. Otherwise, it's 2 seconds (could be decreased if load isn't too bad)
-    waitUntil(eventPlayer.isUsingUltimate(), 2)
-
+    #waitUntil(eventPlayer.isUsingUltimate(), 2)
+    wait(2)
     goto RULE_START
 
 
@@ -39,6 +39,7 @@ rule "Calculate attractiveness":
     - Health (lower health is more attractive, for both enemies and healers)
     - Absolute health (low hp means quicker kill)
     - Proximity to other players (lonely players are better targets)
+    - Butt (rounder is better)
     - Ability cooldown (high cooldown means safer attack)
     - Random noise (so it's not too predictable)
     - i forgor :skull:

@@ -4,7 +4,7 @@
 
 
 /*
-For this example gamemode there will be 3 states for the AI which is a Reinhardt.
+Currently there are 3 states for the AI.
 
 In the "idle" state, the bot has no enemy to target, or is dead.
 He is not doing anything.
@@ -14,7 +14,7 @@ At all times the bot is looking at the targeted player, and will fire firecharge
 
 If the bot enters in range of the player, defined as being less than 7m from the player, less than 1.2m vertically from the player (assuming the bot is below the player, else he can simply jump down), and in line of sight, he enters the "fighting" state.
 In this state, it is considered that the bot can directly reach the targeted enemy (no more pathfinding needed).
-As such, the node graph is no longer used in this state, and the bot will simply walk directly towards the player, while waving his big ass hammer.
+As such, the node graph is no longer used in this state, and the bot will simply walk directly towards the player.
 This state lasts until the bot is no longer in range of the player (defined the same as above) for 5 seconds, after which he will revert to the walking state.
 */
 enum BotWalkBehavior:
@@ -153,25 +153,30 @@ rule "All bots are in spawn - switch to walking mode":
     @Event eachPlayer
     @Condition eventPlayer.isDummy()
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.IDLING
-    @Condition getNumberOfLivingPlayers(Team.BOTS) == 6
-    @Condition all([player.isInSpawnRoom() for player in getPlayers(Team.BOTS)])
-    eventPlayer.walkBehavior = BotWalkBehavior.WALKING
-    #eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.targetPlayer.getPosition()+vect(0,1.5,0)), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
+    @Condition all([player.isInSpawnRoom() for player in getPlayers(eventPlayer.getTeam())])
+    do:
+        eventPlayer.walkBehavior = BotWalkBehavior.WALKING
+        #eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.targetPlayer.getPosition()+vect(0,1.5,0)), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
+        wait()
+    while RULE_CONDITION
 
 rule "Initialize target node":
     @Event eachPlayer
     @Condition eventPlayer.isDummy()
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
     @Condition eventPlayer.timeRemainingToNode == 0
-    #Initialize the target node by getting the closest node to the bot which is in line of sight and not higher than 1.2m.
-    #The bot will always walk directly towards the target node.
-    eventPlayer.targetNode = nodePositions.index(sorted([pos for pos in nodePositions if pos.y - eventPlayer.getPosition().y < 1.2 and isInLoS(pos+vect(0,NODE_RADIUS,0), eventPlayer.getEyePosition(), BarrierLos.PASS_THROUGH_BARRIERS)], lambda pos: distance(eventPlayer.getPosition(), pos))[0])
-    if eventPlayer.targetNode == -1:
-        eventPlayer.walkBehavior = BotWalkBehavior.IDLING
-        eventPlayer.stopThrottleInDirection()
-        return
-    #Put wiggle room by setting it to 2x the distance, in case the bot is slowed down by a boop, slight wall, or similar.
-    eventPlayer.timeRemainingToNode = distance(nodePositions[eventPlayer.targetNode], eventPlayer.getPosition())*2/BOT_SPEED + 0.5
+    do:
+        #Initialize the target node by getting the closest node to the bot which is in line of sight and not higher than 1.2m.
+        #The bot will always walk directly towards the target node.
+        eventPlayer.targetNode = nodePositions.index(sorted([pos for pos in nodePositions if pos.y - eventPlayer.getPosition().y < 1.2 and isInLoS(pos+vect(0,NODE_RADIUS,0), eventPlayer.getEyePosition(), BarrierLos.PASS_THROUGH_BARRIERS)], lambda pos: distance(eventPlayer.getPosition(), pos))[0])
+        if eventPlayer.targetNode == -1:
+            eventPlayer.walkBehavior = BotWalkBehavior.IDLING
+            eventPlayer.stopThrottleInDirection()
+            return
+        #Put wiggle room by setting it to 2x the distance, in case the bot is slowed down by a boop, slight wall, or similar.
+        eventPlayer.timeRemainingToNode = distance(nodePositions[eventPlayer.targetNode], eventPlayer.getPosition())*2/BOT_SPEED + 0.5
+        wait()
+    while RULE_CONDITION
 
 /*rule "Enemy is in range - set mode to fighting":
     @Event eachPlayer

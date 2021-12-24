@@ -31,22 +31,16 @@ globalvar botNames = random.shuffle([
 
 playervar name #needed because apparently spectators can't see dummy bot names
 
-
-enum Team:
-    HUMANS = Team.1,
-    BOTS = Team.2,
-
-
 rule "Init gamemode":
     print("load: {} | avg: {} | max: {}".format(getServerLoad(), getAverageServerLoad(), getPeakServerLoad()))
     
     #Spawn the bots
-    createDummy(Hero.REINHARDT, Team.BOTS, 0, getSpawnPoints(Team.BOTS)[0], null)
-    createDummy(Hero.ZARYA, Team.BOTS, 1, getSpawnPoints(Team.BOTS)[1], null)
-    createDummy(Hero.MCCREE, Team.BOTS, 2, getSpawnPoints(Team.BOTS)[2], null)
-    createDummy(Hero.REAPER, Team.BOTS, 3, getSpawnPoints(Team.BOTS)[3], null)
-    createDummy(Hero.ANA, Team.BOTS, 4, getSpawnPoints(Team.BOTS)[4], null)
-    createDummy(Hero.BAPTISTE, Team.BOTS, 5, getSpawnPoints(Team.BOTS)[5], null)
+    createDummy(Hero.REINHARDT, Team.2, 0, getSpawnPoints(Team.2)[0], null)
+    createDummy(Hero.ZARYA, Team.2, 1, getSpawnPoints(Team.2)[1], null)
+    createDummy(Hero.MCCREE, Team.2, 2, getSpawnPoints(Team.2)[2], null)
+    createDummy(Hero.REAPER, Team.2, 3, getSpawnPoints(Team.2)[3], null)
+    createDummy(Hero.ANA, Team.2, 4, getSpawnPoints(Team.2)[4], null)
+    createDummy(Hero.BAPTISTE, Team.2, 5, getSpawnPoints(Team.2)[5], null)
 
 rule "Initialize dummy":
     @Event eachPlayer

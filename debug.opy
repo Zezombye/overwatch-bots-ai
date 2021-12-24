@@ -41,5 +41,5 @@ rule "invincible":
     @Condition DEBUG_INVINCIBLE
     @Condition eventPlayer.hasSpawned()
     wait(1)
-    eventPlayer.setHealth(Math.INFINITY)
+    eventPlayer.setMaxHealth(Math.INFINITY)
     eventPlayer.startHoT(null, Math.INFINITY, Math.INFINITY)
