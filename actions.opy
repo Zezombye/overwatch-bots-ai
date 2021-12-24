@@ -28,12 +28,13 @@ rule "When an enemy is found, start attacking":
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
     @Condition eventPlayer.targetPlayer != null
 
-    wait(0.016, Wait.ABORT_WHEN_FALSE)
+    while true:
+        eventPlayer.startThrottleInDirection(directionTowards(eventPlayer.getPosition(), eventPlayer.targetPlayer.getPosition()), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
+        eventPlayer.startForcingButton(Button.PRIMARY_FIRE)
+        eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.targetPlayer.getEyePosition()), 0, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
 
-
-    eventPlayer.startThrottleInDirection(directionTowards(eventPlayer.getPosition(), eventPlayer.targetPlayer.getPosition()), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
-    eventPlayer.startForcingButton(Button.PRIMARY_FIRE)
-    eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.targetPlayer.getEyePosition()), 0, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
+        #sometimes the actions don't trigger properly for some reason (workshop moment) so periodically reapply them
+        wait(1, Wait.ABORT_WHEN_FALSE)
 
 
 rule "Enemy ran out of LOS - stop attacking":
