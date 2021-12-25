@@ -16,5 +16,6 @@ First version should include:
 This gamemode has the goal to be generic, so:
 - Do not assume that the enemy team is entirely made of humans or bots
 - Same for the bot's own team, it can contain humans
+- Do not assume that the bot team is team 2
 
 For now, we make the bots the best they can be, meaning they have wallhacks, aimbot, and know everything about enemies (such as their hp or ult charge).
