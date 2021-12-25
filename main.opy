@@ -30,6 +30,7 @@ globalvar botNames = random.shuffle([
 ])
 
 playervar name #needed because apparently spectators can't see dummy bot names
+playervar isBot #that way, we can easily debug specific comps with dummy bots; true if the player is a dummy and part of our AI, not debug stuff
 
 rule "Init gamemode":
     print("load: {} | avg: {} | max: {}".format(getServerLoad(), getAverageServerLoad(), getPeakServerLoad()))
@@ -47,6 +48,9 @@ rule "Initialize dummy":
     @Condition eventPlayer.isDummy()
     eventPlayer.name = eventPlayer.getCurrentHero()
     eventPlayer.startForcingName(eventPlayer.name)
+    if eventPlayer.getTeam() == Team.2:
+        eventPlayer.isBot = true
+    
 
 #!include "heroes/"
 

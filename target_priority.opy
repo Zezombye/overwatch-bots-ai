@@ -11,7 +11,7 @@ playervar attractiveness
 
 rule "Calculate threat":
     @Event eachPlayer
-    @Condition not eventPlayer.isDummy()
+    @Condition not eventPlayer.isBot
 
     /* Threat is based on:
     - Health (lower health is less threatening)

@@ -2,7 +2,7 @@
 
 rule "Enemy is in sight - switch to attacking mode":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior != BotWalkBehavior.FIGHTING
     @Condition any([isInLoS(eventPlayer.getEyePosition(), p.getEyePosition(), BarrierLos.PASS_THROUGH_BARRIERS) and distance(eventPlayer.getPosition(), p) < 20 for p in getPlayers(getOppositeTeam(eventPlayer.getTeam()))])
 
@@ -24,7 +24,7 @@ rule "Enemy is in sight - switch to attacking mode":
 
 rule "When an enemy is found, start attacking":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
     @Condition eventPlayer.targetPlayer != null
 
@@ -39,7 +39,7 @@ rule "When an enemy is found, start attacking":
 
 rule "Enemy ran out of LOS - stop attacking":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
     @Condition not isInLoS(eventPlayer.getEyePosition(), eventPlayer.targetPlayer.getEyePosition(), BarrierLos.PASS_THROUGH_BARRIERS)
 

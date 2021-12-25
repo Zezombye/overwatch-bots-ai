@@ -11,7 +11,7 @@
 rule "debug pathfinding":
     @Event eachPlayer
     @Condition DEBUG_PATHFINDING
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     
     hudText(getAllPlayers(), 
         "{}".format(eventPlayer.name),
@@ -28,7 +28,7 @@ rule "debug pathfinding":
 rule "wallhacks":
     @Event eachPlayer
     @Condition DEBUG_WALLHACKS
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     createInWorldText(getAllPlayers(), heroIcon(eventPlayer.getCurrentHero()), eventPlayer, 2, Clip.NONE, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, Color.RED, SpecVisibility.ALWAYS)
 
 rule "fast respawn":

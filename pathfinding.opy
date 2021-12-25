@@ -118,12 +118,12 @@ rule "Decompress pathmap":
 
 rule "Init bot":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     chase(eventPlayer.timeRemainingToNode, 0, rate=1, ChaseReeval.NONE)
 
 rule "Bot is idling - stop throttle and pressing buttons":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.IDLING
     eventPlayer.stopForcingButton(Button.PRIMARY_FIRE)
     eventPlayer.stopThrottleInDirection()
@@ -134,7 +134,7 @@ rule "Bot is idling - stop throttle and pressing buttons":
 
 rule "Set destination node":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
     eventPlayer.pathToTake = random.randint(0, len(paths))
     eventPlayer.pathNodeIndex = 0
@@ -143,7 +143,7 @@ rule "Set destination node":
 
 rule "When walking, go to target node":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
 
     eventPlayer.startThrottleInDirection(directionTowards(eventPlayer.getPosition(), nodePositions[eventPlayer.targetNode]), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
@@ -151,7 +151,7 @@ rule "When walking, go to target node":
 
 rule "All bots are in spawn - switch to walking mode":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.IDLING
     @Condition all([player.isInSpawnRoom() for player in getPlayers(eventPlayer.getTeam())])
     do:
@@ -162,7 +162,7 @@ rule "All bots are in spawn - switch to walking mode":
 
 rule "Initialize target node":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
     @Condition eventPlayer.timeRemainingToNode == 0
     do:
@@ -180,7 +180,7 @@ rule "Initialize target node":
 
 /*rule "Enemy is in range - set mode to fighting":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
     @Condition abs(eventPlayer.getPosition().y - eventPlayer.targetPlayer.getPosition().y) < 1.2
     @Condition distance(eventPlayer, eventPlayer.targetPlayer) < 7
@@ -192,14 +192,14 @@ rule "Initialize target node":
 
 rule "Bot is fighting - set throttle towards enemy and start swinging":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
     eventPlayer.startThrottleInDirection(directionTowards(eventPlayer.getPosition(), eventPlayer.targetPlayer.getPosition()), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
     eventPlayer.startForcingButton(Button.PRIMARY_FIRE)
 
 rule "Enemy is no longer in range - set mode back to idling":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
     @Condition abs(eventPlayer.getPosition().y - eventPlayer.targetPlayer.getPosition().y) >= 1.2 or distance(eventPlayer, eventPlayer.targetPlayer) >= 7 or not isInLoS(eventPlayer.getEyePosition(), eventPlayer.targetPlayer.getEyePosition(), BarrierLos.PASS_THROUGH_BARRIERS)
     do:
@@ -209,7 +209,7 @@ rule "Enemy is no longer in range - set mode back to idling":
 
 /*rule "Fire firecharges on enemy when in walking mode":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
     @Condition isInLoS(eventPlayer.getEyePosition(), eventPlayer.targetPlayer.getEyePosition(), BarrierLos.PASS_THROUGH_BARRIERS)
     do:
@@ -226,7 +226,7 @@ rule "Enemy is no longer in range - set mode back to idling":
 
 rule "Jump over cliffs":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING or eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
     @Condition updateEveryTick(isInLoS(eventPlayer.getPosition()+normalize(eventPlayer.getThrottle())*0.2+vect(0,0.5,0), eventPlayer.getPosition()+normalize(eventPlayer.getThrottle())*0.2-vect(0,0.5,0), BarrierLos.PASS_THROUGH_BARRIERS))
     do:
@@ -237,7 +237,7 @@ rule "Jump over cliffs":
 
 rule "Jump over obstacles":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING or eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
     @Condition eventPlayer.getHorizontalSpeed() < 3
     do:
@@ -248,7 +248,7 @@ rule "Jump over obstacles":
 
 rule "Target node was reached":
     @Event eachPlayer
-    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
     @Condition eventPlayer.targetNode >= 0
     @Condition eventPlayer.getPosition().y > nodePositions[eventPlayer.targetNode].y - NODE_RADIUS
