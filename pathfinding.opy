@@ -147,8 +147,12 @@ rule "When walking, go to target node":
     @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
 
+    eventPlayer.stopForcingButton(Button.PRIMARY_FIRE)
+    eventPlayer.stopThrottleInDirection()
+    eventPlayer.stopFacing()
+    eventPlayer.targetPlayer = null
     eventPlayer.startThrottleInDirection(directionTowards(eventPlayer.getPosition(), nodePositions[eventPlayer.targetNode]), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
-
+    eventPlayer.startFacing(directionTowards(eventPlayer.getPosition(), nodePositions[eventPlayer.targetNode]), 150, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
 
 rule "All bots are in spawn - switch to walking mode":
     @Event eachPlayer
