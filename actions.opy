@@ -28,7 +28,6 @@ rule "When an enemy is found, start attacking":
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
     @Condition eventPlayer.targetPlayer != null
 
-    while true:
         eventPlayer.startThrottleInDirection(directionTowards(eventPlayer.getPosition(), eventPlayer.targetPlayer.getPosition()), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
         eventPlayer.startForcingButton(Button.PRIMARY_FIRE)
         eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.targetPlayer.getEyePosition()), Math.INFINITY, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
@@ -54,3 +53,18 @@ rule "Enemy ran out of LOS - stop attacking":
         wait()
     while RULE_CONDITION
 
+    # This will stop the ai from jumping on the player head
+rule "Enemy close, stop jumping":
+        @Event eachPlayer
+        @Condition eventPlayer.isBot
+        @Condition eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
+        
+        if distance(eventPlayer, eventPlayer.targetPlayer.getPosition()) <= 2:
+            eventPlayer.nearTarget = true
+        else:
+            eventPlayer.nearTarget = false
+        wait(0.1)
+        if RULE_CONDITION:
+            goto RULE_START
+    
+    
