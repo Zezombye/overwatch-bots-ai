@@ -39,6 +39,7 @@ playervar pathNodeIndex
 # Targeting
 playervar seenEnemies
 playervar targetPlayer
+playervar nearTarget
 
 enum Message:
     NO_PATHMAP,
@@ -146,8 +147,12 @@ rule "When walking, go to target node":
     @Condition eventPlayer.isBot
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING
 
+    eventPlayer.stopForcingButton(Button.PRIMARY_FIRE)
+    eventPlayer.stopThrottleInDirection()
+    eventPlayer.stopFacing()
+    eventPlayer.targetPlayer = null
     eventPlayer.startThrottleInDirection(directionTowards(eventPlayer.getPosition(), nodePositions[eventPlayer.targetNode]), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
-
+    eventPlayer.startFacing(directionTowards(eventPlayer.getPosition(), nodePositions[eventPlayer.targetNode]), 150, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
 
 rule "All bots are in spawn - switch to walking mode":
     @Event eachPlayer
@@ -227,6 +232,7 @@ rule "Enemy is no longer in range - set mode back to idling":
 rule "Jump over cliffs":
     @Event eachPlayer
     @Condition eventPlayer.isBot
+    @Condition eventPlayer.nearTarget == false
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING or eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
     @Condition updateEveryTick(isInLoS(eventPlayer.getPosition()+normalize(eventPlayer.getThrottle())*0.2+vect(0,0.5,0), eventPlayer.getPosition()+normalize(eventPlayer.getThrottle())*0.2-vect(0,0.5,0), BarrierLos.PASS_THROUGH_BARRIERS))
     do:
@@ -238,6 +244,7 @@ rule "Jump over cliffs":
 rule "Jump over obstacles":
     @Event eachPlayer
     @Condition eventPlayer.isBot
+    @Condition eventPlayer.nearTarget == false
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING or eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
     @Condition eventPlayer.getHorizontalSpeed() < 3
     do:
