@@ -24,8 +24,8 @@ rule "Enemy is in sight - switch to attacking mode":
 
 rule "When an enemy is found, start attacking":
         @Event eachPlayer
-        @Condition eventPlayer.isBot != false
-        @Condition eventPlayer.walkBehavior == 2
+        @Condition eventPlayer.isBot 
+        @Condition eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
         @Condition eventPlayer.targetPlayer != null
         
         if eventPlayer.targetPlayer.isAlive() == true:
