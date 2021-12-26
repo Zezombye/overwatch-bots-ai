@@ -19,3 +19,13 @@ This gamemode has the goal to be generic, so:
 - Do not assume that the bot team is team 2
 
 For now, we make the bots the best they can be, meaning they have wallhacks, aimbot, and know everything about enemies (such as their hp or ult charge).
+
+The algorithms we should implement are as follow (still WIP):
+
+- State of bot
+
+![](doc/bot_state.drawio.svg)
+
+- Target of bot
+
+![](doc/bot_target.drawio.svg)

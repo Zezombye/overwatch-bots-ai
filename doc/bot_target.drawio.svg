@@ -1,29 +1,11 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="382px" height="301px" viewBox="-0.5 -0.5 382 301" content="&lt;mxfile&gt;&lt;diagram id=&quot;mQz922ou5hmFUMi69C7Y&quot; name=&quot;Page-1&quot;&gt;3VhLT+MwEP41keAAsp2mjyOl7O6BlVYqEnB0GzfxKokjx6Utv37HiZ1HkwKlYVn20mYm47Hnm/nG0zrudbz9Lmka/hQ+ixyC/K3jzhxCMCIT+NKaXaEZY1IoAsl9Y1Qp5vyZ2ZVGu+Y+yxqGSohI8bSpXIokYUvV0FEpxaZpthJRc9eUBqylmC9p1Nbec1+FJgoyqvQ/GA9CuzMemoBjao1NJFlIfbGpqdwbx72WQqjiKd5es0iDZ3Ep1n078LY8mGSJessC1xxD7WxszIdQjZiIBL6moYojkDA8Fuba5uCGRpWJtVwaK1JGBiXBRMyU3IGJZBFV/KnpiprcBKVdufSX4LAJQaaOBsiAaKoIFE0XisqAKbOqAgEeaseoVDk03TANCsdPNFqb094kLNYx8AQ+bsW8E8dbuoDKbwBIIx4k8LwEvJgExROTikNpXZkXMfd97WMqWcaf6SL3h0BOdRx5ZN7U8WZlMrQDtnU66t4srqqtnia3OyfG0QW6HJDxsIlvIZ2YtQvScIr3ciZWq4ydmi7SStddXgqgy0UkFr8BHx3EftqkWCc+8w3mm5ArNk9pXsgbaGZdbOhIQIsPB4F2B80ixhaQTdVYsM1fWGsqQ3QY+QZ0L+A0OZL9bMvVg4bm0jPSY+3NbGtQy4WdFRI4VG2RFh/r76pluWTXva/TmA5cMN+05RObz1vBHLWKziHDCA4xzVIKXWIY6OcZA9rHHJAtT0nQOuNJoLfPuRunETQEBUWoryYZryOtPyutl9obJI3n2y9yTyGrV/W53Xkh7b5WA1HUj/NC/eO/U/+u193E6/XvdtT/qIf6t1w7ngC18q/I8BoBGuVfsaFXAozbBOjl9r2Sku5qBuY2OtjmyV5fc8d7g8gr9niA9jJZnOC9VwLGh+8EnulZlFG/TRsBTygR8BGJJGBaguRmOnJ0xleGs2lEd0yef7kZAKPu0qiGgPEeO/sZAbxRw6sdCXqdAfCxo63lNn4Pt/EncXv0Gdz2yHHc3rcnI69fbrfH8zu2VV+Pji/P5OiS4HFfQ3gzI6PBRzDQa6XlnnJ9igedFwaQ+Nn/liTomd4ETTr724lJw16n115zNj58S+YixJCtIy2KVTl3lkPqP/ZbyvU+7rcUiNW/NAXQ1X9d7s0f&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="317px" height="291px" viewBox="-0.5 -0.5 317 291" content="&lt;mxfile&gt;&lt;diagram id=&quot;mQz922ou5hmFUMi69C7Y&quot; name=&quot;Page-1&quot;&gt;1VdNc9owEP01HJPxBwZ6DJCkh3aaSTqT5CjwYqu1JY8sB5xfX8mWsGQbcEKSmZ7QrnZl7e7bp2XkL9LdLUNZ/JOGkIw8J9yN/OXI81zH+yZ+pKasNTPXqxURw6EyahQP+BW0p9IWOITcMuSUJhxntnJNCYE1t3SIMbq1zTY0sb+aoQg6ioc1SrraRxzyWEXhTRv9d8BRrL/sTlTAKdLGKpI8RiHdGir/euQvGKW8XqW7BSQyeTovtd/Ngd39xRgQPsRB5f0FJYWK7TdiEXChq0SHrv6IDOIXUPflpU4CowUJQZ4jTOfbGHN4yNBa7m5F2YUu5mkiJFcsu/dSV30BxmFnqNQ9b4GmwFkpTNSuP1Y5K3VWlbxtSuDqvMZG+idKh1TVo/3RTWLEQuXmQGKdTvwQCkwokVACdsCww/xJ5Uaun+X6MlDScmdsLUstEHGrJ1MwvKTYuFVSaRxyBwyLqIAp3cGE57RgaxWCzhava24iQkZ3tCoMElThwmqunhRXrleModIwyCgmPDdOvpOKptj7oqli+9MWjtv24/Ps3bHTgkN9437vNhT9WQtidZKVVwtl+xwOA57uk54OxSKBDqFyiZKqRSeJqOJ8xcQqkqtf912d7b6CDWUguTKmf7tNLmHwA60Ef1voFp+LiFivBbok5OayjbEgyCu1keIwlGfMGeT4Fa2q8yQuVeHF4cF8FCz7keoc4IY9o6sDLdLs44wL53IWWKVS8H4bejsAuAhm1qkXnn0C3WxyOLv0k/dyzp5nno2dU5zT0MyzxTL9nNPLEr2EY5GLplGThD6CXzoVGjutBv/EFp12WvSaQCqDyDPKuXgjZWJy3nRZuycRCe231lmjjBdMug7paf09AogdfbS/rJ8H924LM5NT/Twe23X9mH52bZL4jHbW4R6ete4hLxIp0k01lbK0SJDkaJRXGKJEtlPMAAmjG8Q5Q1WVCeS59oIaCQdnNXforNZTwE5zD57V9vJXzGp6DH8zb7ojc1abDhzWXHtY805Na8OZ8+SoduDx+9zRLHDaw09wdNTq2AdBq5rGqPWevpp1+uoRYXkB59LN/zsGrNF7lAGDcXAe653Da0Js/p7W5s2ffP/6Hw==&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
-        <path d="M 223 60 L 223 123.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 223 128.88 L 219.5 121.88 L 223 123.63 L 226.5 121.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="144" y="0" width="120" height="60" fill="#ffffff" stroke="#000000" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 91px; margin-left: 224px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; ">
-                                Enemy in LoS
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="224" y="94" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">
-                    Enemy in LoS
-                </text>
-            </switch>
-        </g>
-        <rect x="163" y="0" width="120" height="60" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 30px; margin-left: 164px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 30px; margin-left: 145px;">
                         <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                 Target = objective
@@ -31,101 +13,89 @@
                         </div>
                     </div>
                 </foreignObject>
-                <text x="223" y="34" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                <text x="204" y="34" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
                     Target = objective
                 </text>
             </switch>
         </g>
-        <path d="M 223 200 L 223 233.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 223 238.88 L 219.5 231.88 L 223 233.63 L 226.5 231.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <rect x="158" y="130" width="130" height="70" rx="10.5" ry="10.5" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+        <path d="M 144 260 L 74 260 Q 64 260 54 260 L 49 260 Q 44 260 44 250 L 44 40 Q 44 30 54 30 L 137.63 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 142.88 30 L 135.88 33.5 L 137.63 30 L 135.88 26.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 128px; height: 1px; padding-top: 165px; margin-left: 159px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                <span>
-                                    Determine target using a complicated formula (target can still be the objective)
-                                    <br/>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="223" y="169" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Determine target usin...
-                </text>
-            </switch>
-        </g>
-        <path d="M 163 270 L 73 270 Q 63 270 63 260 L 63 40 Q 63 30 73 30 L 156.63 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 161.88 30 L 154.88 33.5 L 156.63 30 L 154.88 26.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 271px; margin-left: 74px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 261px; margin-left: 55px;">
                         <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
                             <div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; ">
-                                Target is dead
+                                Target is not alive
                                 <br/>
-                                or no longer exists (if a player)
+                                OR
+                                <br/>
+                                Target is before choke
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="74" y="274" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">
-                    Target is dead...
+                <text x="55" y="264" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">
+                    Target is not alive...
                 </text>
             </switch>
         </g>
-        <path d="M 283 270 L 333 270 Q 343 270 343 260 L 343 175 Q 343 165 333 165 L 294.37 165" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 289.12 165 L 296.12 161.5 L 294.37 165 L 296.12 168.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 204 60 L 204 223.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 204 228.88 L 200.5 221.88 L 204 223.63 L 207.5 221.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 271px; margin-left: 324px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 131px; margin-left: 205px;">
                         <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
                             <div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; ">
-                                Text
+                                Enemy spotted past choke
+                                <br/>
+                                and objective captured
+                                <br/>
+                                OR
+                                <br/>
+                                Enemy near objective
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="324" y="274" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">
-                    Text
+                <text x="205" y="134" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">
+                    Enemy spotted past choke...
                 </text>
             </switch>
         </g>
+        <rect x="144" y="230" width="120" height="60" rx="9" ry="9" fill="#ffffff" stroke="#000000" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 271px; margin-left: 344px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; ">
-                                Wait X seconds
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="344" y="274" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">
-                    Wait X seconds
-                </text>
-            </switch>
-        </g>
-        <rect x="163" y="240" width="120" height="60" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 270px; margin-left: 164px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 260px; margin-left: 145px;">
                         <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                Target = result of the formula
+                                Target = Result of formula based on threat/attractiveness of enemy
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="223" y="274" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Target = result of t...
+                <text x="204" y="264" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    Target = Result of f...
+                </text>
+            </switch>
+        </g>
+        <path d="M 264 275 L 294 275 Q 304 275 304 265 L 304 255 Q 304 245 294 245 L 270.37 245" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 265.12 245 L 272.12 241.5 L 270.37 245 L 272.12 248.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 276px; margin-left: 295px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                            <div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; ">
+                                Wait 0.1s
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="295" y="279" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">
+                    Wait 0.1s
                 </text>
             </switch>
         </g>
