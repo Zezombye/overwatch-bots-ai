@@ -19,7 +19,7 @@ rule "debug pathfinding":
         "Targeting player: {}, mode: {}".format(eventPlayer.targetPlayer, "idling" if eventPlayer.walkBehavior == BotWalkBehavior.IDLING else "walking" if eventPlayer.walkBehavior == BotWalkBehavior.WALKING else "fighting"),
         #"Taking path: {}".format(eventPlayer.pathToTake),
         "Target node: {} ({}s left), dest node: {}".format(eventPlayer.targetNode, eventPlayer.timeRemainingToNode, eventPlayer.destNode),
-        HudPosition.LEFT, eventPlayer.getSlot(), Color.WHITE, Color.WHITE, Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.ALWAYS
+        HudPosition.LEFT, eventPlayer.getSlot()+10, Color.WHITE, Color.WHITE, Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.ALWAYS
     )
     createEffect(getAllPlayers(), Effect.SPHERE, Color.GREEN, nodePositions[eventPlayer.destNode], NODE_RADIUS, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     createInWorldText(getAllPlayers(), "{}'s dest node".format(eventPlayer.name), nodePositions[eventPlayer.destNode], 1, Clip.NONE, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, Color.WHITE, SpecVisibility.ALWAYS)
