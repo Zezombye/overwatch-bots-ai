@@ -39,6 +39,7 @@ playervar pathNodeIndex
 # Targeting
 playervar seenEnemies
 playervar targetPlayer
+playervar nearTarget
 
 enum Message:
     NO_PATHMAP,
@@ -227,6 +228,7 @@ rule "Enemy is no longer in range - set mode back to idling":
 rule "Jump over cliffs":
     @Event eachPlayer
     @Condition eventPlayer.isBot
+    @Condition eventPlayer.nearTarget == false
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING or eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
     @Condition updateEveryTick(isInLoS(eventPlayer.getPosition()+normalize(eventPlayer.getThrottle())*0.2+vect(0,0.5,0), eventPlayer.getPosition()+normalize(eventPlayer.getThrottle())*0.2-vect(0,0.5,0), BarrierLos.PASS_THROUGH_BARRIERS))
     do:
@@ -238,6 +240,7 @@ rule "Jump over cliffs":
 rule "Jump over obstacles":
     @Event eachPlayer
     @Condition eventPlayer.isBot
+    @Condition eventPlayer.nearTarget == false
     @Condition eventPlayer.walkBehavior == BotWalkBehavior.WALKING or eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
     @Condition eventPlayer.getHorizontalSpeed() < 3
     do:
