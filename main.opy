@@ -36,12 +36,12 @@ rule "Init gamemode":
     print("load: {} | avg: {} | max: {}".format(getServerLoad(), getAverageServerLoad(), getPeakServerLoad()))
     
     #Spawn the bots
-    createDummy(Hero.REINHARDT, Team.2, 0, getSpawnPoints(Team.2)[0], null)
-    createDummy(Hero.ZARYA, Team.2, 1, getSpawnPoints(Team.2)[1], null)
-    createDummy(Hero.MCCREE, Team.2, 2, getSpawnPoints(Team.2)[2], null)
-    createDummy(Hero.REAPER, Team.2, 3, getSpawnPoints(Team.2)[3], null)
+    createDummy(Hero.WINSTON, Team.2, 0, getSpawnPoints(Team.2)[0], null)
+    createDummy(Hero.DVA, Team.2, 1, getSpawnPoints(Team.2)[1], null)
+    createDummy(Hero.GENJI, Team.2, 2, getSpawnPoints(Team.2)[2], null)
+    createDummy(Hero.TRACER, Team.2, 3, getSpawnPoints(Team.2)[3], null)
     createDummy(Hero.ANA, Team.2, 4, getSpawnPoints(Team.2)[4], null)
-    createDummy(Hero.BAPTISTE, Team.2, 5, getSpawnPoints(Team.2)[5], null)
+    createDummy(Hero.ZENYATTA, Team.2, 5, getSpawnPoints(Team.2)[5], null)
 
 rule "Initialize dummy":
     @Event eachPlayer

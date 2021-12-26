@@ -1,15 +1,15 @@
 # overwatch-bots-ai
 
-Generic gamemode to fight against workshop bots. Takes some elements from DalgonAI.
+Generic gamemode to fight against workshop bots.
 
 First version should include:
 - 6 heroes
-  - Tank 1: Reinhardt
-  - Tank 2: Zarya
-  - DPS 1: Cassidy
-  - DPS 2: Reaper
+  - Tank 1: Winston
+  - Tank 2: Dva
+  - DPS 1: Tracer
+  - DPS 2: Genji
   - Healer 1: Ana
-  - Healer 2: Baptiste
+  - Healer 2: Zenyatta
 - 1 map (chosen to be Nepal)
 - AI good enough to beat a bronze team
 
