@@ -14,6 +14,7 @@ settings {
             "enabledMaps": [
                 "nepal"
             ],
+            "gamemodeStartTrigger": "manual",
             "setValidControlPoints": "second"
         },
         "ffa": {
