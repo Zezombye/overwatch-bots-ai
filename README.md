@@ -22,10 +22,6 @@ For now, we make the bots the best they can be, meaning they have wallhacks, aim
 
 The algorithms we should implement are as follow (still WIP):
 
-- State of bot
-
-![](doc/bot_state.drawio.svg)
-
 - Target of bot
 
-![](doc/bot_target.drawio.svg)
+![](doc/bot_state.drawio.svg)
