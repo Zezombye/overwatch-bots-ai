@@ -1,9 +1,5 @@
 #!include "settings.opy"
 
-
-#!extension spawnMoreDummyBots
-
-
 globalvar i
 globalvar j
 
