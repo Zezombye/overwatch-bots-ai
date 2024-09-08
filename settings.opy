@@ -18,7 +18,7 @@ settings {
             "setValidControlPoints": "second"
         },
         "ffa": {
-            "enabled": false,
+            "enabled": true,
             "gamemodeStartTrigger": "immediately",
             "heroLimit": "off",
             "enableRandomHeroes": true,

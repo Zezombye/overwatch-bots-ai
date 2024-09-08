@@ -2,6 +2,25 @@
 
 #!define NB_NODES len(nodePositions)
 
+/*
+Currently there are 3 states for the AI.
+
+In the "idle" state, the bot has no enemy to target, or is dead.
+He is not doing anything.
+
+In the "walking" state, the bot has found a suitable enemy and will walk towards the targeted enemy, following the node graph.
+At all times the bot is looking at the targeted player, and will fire firecharges at him if he happens to be in line of sight.
+
+If the bot enters in range of the player, defined as being less than 7m from the player, less than 1.2m vertically from the player (assuming the bot is below the player, else he can simply jump down), and in line of sight, he enters the "fighting" state.
+In this state, it is considered that the bot can directly reach the targeted enemy (no more pathfinding needed).
+As such, the node graph is no longer used in this state, and the bot will simply walk directly towards the player.
+This state lasts until the bot is no longer in range of the player (defined the same as above) for 5 seconds, after which he will revert to the walking state.
+*/
+enum BotWalkBehavior:
+    IDLING,
+    WALKING,
+    FIGHTING,
+
 globalvar uncompressedData = []
 globalvar timer
 globalvar currentNodeArray
@@ -17,25 +36,6 @@ playervar timeRemainingToNode
 playervar pathToTake
 playervar pathNodeIndex
 
-
-/*
-Currently there are 3 states for the AI.
-
-In the "idle" state, the bot has no enemy to target, or is dead.
-He is not doing anything.
-
-In the "walking" state, the bot has found a suitable enemy and will walk towards the targeted enemy, following the node graph. 
-At all times the bot is looking at the targeted player, and will fire firecharges at him if he happens to be in line of sight.
-
-If the bot enters in range of the player, defined as being less than 7m from the player, less than 1.2m vertically from the player (assuming the bot is below the player, else he can simply jump down), and in line of sight, he enters the "fighting" state.
-In this state, it is considered that the bot can directly reach the targeted enemy (no more pathfinding needed).
-As such, the node graph is no longer used in this state, and the bot will simply walk directly towards the player.
-This state lasts until the bot is no longer in range of the player (defined the same as above) for 5 seconds, after which he will revert to the walking state.
-*/
-enum BotWalkBehavior:
-    IDLING,
-    WALKING,
-    FIGHTING,
 
 # Targeting
 playervar seenEnemies
@@ -105,14 +105,14 @@ rule "Decompress pathmap":
                     if currentCharIdx > NB_NODES * NB_NODES:
                         break
                     uncompressedData[floor((currentCharIdx-1)/NB_NODES)] = currentNodeArray
-        
+
         wait()
 
     #Remove compressed data and calculation variables to make the server less laggy.
     alphabet = null
     compressedData = null
     currentNodeArray = null
-    
+
     stopChasingVariable(timer)
     enableInspector()
     message = Message.FINISHED_DECOMPRESSION
@@ -250,7 +250,7 @@ rule "Jump over obstacles":
         eventPlayer.forceButtonPress(Button.JUMP)
         wait()
     while RULE_CONDITION
-    
+
 
 rule "Target node was reached":
     @Event eachPlayer

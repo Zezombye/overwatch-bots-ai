@@ -24,10 +24,10 @@ rule "Enemy is in sight - switch to attacking mode":
 
 rule "When an enemy is found, start attacking":
         @Event eachPlayer
-        @Condition eventPlayer.isBot 
+        @Condition eventPlayer.isBot
         @Condition eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
         @Condition eventPlayer.targetPlayer != null
-        
+
         if eventPlayer.targetPlayer.isAlive() == true:
             eventPlayer.startThrottleInDirection(directionTowards(eventPlayer.getPosition(), eventPlayer.targetPlayer.getPosition()), 1, Relativity.TO_WORLD, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
             eventPlayer.startForcingButton(Button.PRIMARY_FIRE)
@@ -41,8 +41,8 @@ rule "When an enemy is found, start attacking":
         wait()
         if RULE_CONDITION:
             goto RULE_START
-    
-    
+
+
 
 
 rule "Enemy ran out of LOS - stop attacking":
@@ -62,11 +62,11 @@ rule "Enemy close, stop jumping":
         @Event eachPlayer
         @Condition eventPlayer.isBot
         @Condition eventPlayer.walkBehavior == BotWalkBehavior.FIGHTING
-        
+
         if distance(eventPlayer, eventPlayer.targetPlayer.getPosition()) <= 2:
-            eventPlayer.nearTarget = true
+            eventPlayer.isNearTarget = true
         else:
-            eventPlayer.nearTarget = false
+            eventPlayer.isNearTarget = false
         wait(0.1)
         if RULE_CONDITION:
             goto RULE_START
